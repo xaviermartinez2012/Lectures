@@ -1,2 +1,6 @@
 language: csharp
 solution: Introductions.sln
+mono: none
+dotnet: 1.0.0-preview2-003131
+dist: trusty
+sudo: required
