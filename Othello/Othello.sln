@@ -5,18 +5,18 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{68F4B400-02BA-460F-9F01-C71ACD6EFF2E}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Othello.Game", "src\Othello.Game\Othello.Game.xproj", "{59A6C5F6-CAF1-4E9C-BEC4-631F69C03D16}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Othello.App", "src\Othello.App\Othello.App.xproj", "{F32642DA-06DE-4C72-B606-B2B654B0DB09}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{38F8D107-3712-42BF-B056-23A43399476D}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Othello.Test", "test\Othello.Test\Othello.Test.xproj", "{28D8CBB3-A3CC-40A5-BD8E-9298F0FE0203}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{660FDC60-B2E3-4AA0-B9AB-83E2BE71AE6D}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
 	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Othello.Game", "src\Othello.Game\Othello.Game.xproj", "{29031587-6543-4B65-A24F-FE80CF7F28F5}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Othello.App", "src\Othello.App\Othello.App.xproj", "{A780F741-CFE8-4069-8455-B2D9B3FF3D23}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Othello.Test", "test\Othello.Test\Othello.Test.xproj", "{963C1C1A-06DD-4CCA-846E-73A8FB3B6768}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,25 +24,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59A6C5F6-CAF1-4E9C-BEC4-631F69C03D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59A6C5F6-CAF1-4E9C-BEC4-631F69C03D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59A6C5F6-CAF1-4E9C-BEC4-631F69C03D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59A6C5F6-CAF1-4E9C-BEC4-631F69C03D16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F32642DA-06DE-4C72-B606-B2B654B0DB09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F32642DA-06DE-4C72-B606-B2B654B0DB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F32642DA-06DE-4C72-B606-B2B654B0DB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F32642DA-06DE-4C72-B606-B2B654B0DB09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28D8CBB3-A3CC-40A5-BD8E-9298F0FE0203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28D8CBB3-A3CC-40A5-BD8E-9298F0FE0203}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28D8CBB3-A3CC-40A5-BD8E-9298F0FE0203}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28D8CBB3-A3CC-40A5-BD8E-9298F0FE0203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29031587-6543-4B65-A24F-FE80CF7F28F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29031587-6543-4B65-A24F-FE80CF7F28F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29031587-6543-4B65-A24F-FE80CF7F28F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29031587-6543-4B65-A24F-FE80CF7F28F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A780F741-CFE8-4069-8455-B2D9B3FF3D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A780F741-CFE8-4069-8455-B2D9B3FF3D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A780F741-CFE8-4069-8455-B2D9B3FF3D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A780F741-CFE8-4069-8455-B2D9B3FF3D23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{963C1C1A-06DD-4CCA-846E-73A8FB3B6768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{963C1C1A-06DD-4CCA-846E-73A8FB3B6768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{963C1C1A-06DD-4CCA-846E-73A8FB3B6768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{963C1C1A-06DD-4CCA-846E-73A8FB3B6768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{59A6C5F6-CAF1-4E9C-BEC4-631F69C03D16} = {68F4B400-02BA-460F-9F01-C71ACD6EFF2E}
-		{F32642DA-06DE-4C72-B606-B2B654B0DB09} = {68F4B400-02BA-460F-9F01-C71ACD6EFF2E}
-		{28D8CBB3-A3CC-40A5-BD8E-9298F0FE0203} = {38F8D107-3712-42BF-B056-23A43399476D}
+		{29031587-6543-4B65-A24F-FE80CF7F28F5} = {68F4B400-02BA-460F-9F01-C71ACD6EFF2E}
+		{A780F741-CFE8-4069-8455-B2D9B3FF3D23} = {68F4B400-02BA-460F-9F01-C71ACD6EFF2E}
+		{963C1C1A-06DD-4CCA-846E-73A8FB3B6768} = {38F8D107-3712-42BF-B056-23A43399476D}
 	EndGlobalSection
 EndGlobal

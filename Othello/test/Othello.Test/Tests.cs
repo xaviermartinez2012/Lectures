@@ -31,13 +31,5 @@ namespace Othello.Tests {
 			board.ApplyMove(new OthelloMove(new BoardPosition(5, 2)));
 			board.Value.Should().Be(5);
 		}
-
-		[Fact]
-		public void ValueAfterUndo() {
-			OthelloBoard board = new OthelloBoard();
-			board.ApplyMove(new OthelloMove(new BoardPosition(3, 2)));
-			board.UndoLastMove();
-			board.Value.Should().Be(0);
-		}
 	}
 }
