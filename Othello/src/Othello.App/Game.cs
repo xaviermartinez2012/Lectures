@@ -29,17 +29,22 @@ namespace Othello.App
 
 				// Print the turn indication.
 				Console.WriteLine();
-				Console.Write("{0}'s turn: ", board.CurrentPlayer == 1 ? "Black" : "White");
+				Console.Write("{0}'s turn: ", view.GetPlayerString(board.CurrentPlayer));
 
 				// Parse user input and apply their command.
 				string input = Console.ReadLine();
 				if (input.StartsWith("move ")) {
 					// Parse the move and validate that it is one of the possible moves before applying it.
 					OthelloMove move = view.ParseMove(input.Substring(5));
-					if (possMoves.Contains(move)) {
-						board.ApplyMove(move);
+					bool foundMove = false;
+					foreach (var poss in possMoves) {
+						if (poss.Equals(move)) {
+							board.ApplyMove(poss);
+							foundMove = true;
+							break;
+						}
 					}
-					else {
+					if (!foundMove) {
 						Console.WriteLine("That is not a possible move, please try again.");
 					}
 				}

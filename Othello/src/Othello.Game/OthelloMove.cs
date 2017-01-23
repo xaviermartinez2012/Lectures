@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Othello.Game {
 	/// <summary>
 	/// Represents a single move that can be or has been applied to an OthelloBoard object.
 	/// </summary>
-	public class OthelloMove {
+	public class OthelloMove : IEquatable<OthelloMove> {
 		/// <summary>
 		/// A record of pieces that were flipped in a particular direction when an OthelloMove was applied.
 		/// </summary>
@@ -51,21 +52,12 @@ namespace Othello.Game {
 		/// <summary>
 		/// Returns true if the two objects have the same position.
 		/// </summary>
-		public override bool Equals(object obj) {
-			OthelloMove other = obj as OthelloMove;
+		public bool Equals(OthelloMove other) {
 			return other.Position.Row == this.Position.Row && other.Position.Col == this.Position.Col;
-		}
-
-		// Any time you override Equals you should also override GetHashCode, which is used in hashing data structures
-		// to find hash buckets for an object.
-		public override int GetHashCode() {
-			return Position.GetHashCode();
 		}
 
 		public override string ToString() {
 			return Position.ToString();
 		}
-
-
 	}
 }

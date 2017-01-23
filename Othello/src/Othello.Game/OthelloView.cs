@@ -15,6 +15,13 @@ namespace Othello.Game {
 		}
 
 		/// <summary>
+		/// Gets a string representing the given player.
+		/// </summary>
+		public string GetPlayerString(int player) {
+			return player == 1 ? "Black" : "White";
+		}
+
+		/// <summary>
 		/// Prints a text representation of an OthelloBoard to the given TextWriter.
 		/// </summary>
 		public void PrintView(TextWriter output, OthelloBoard board) {

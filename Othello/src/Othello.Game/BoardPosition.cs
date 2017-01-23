@@ -8,7 +8,10 @@ namespace Othello.Game
 	/// <summary>
 	/// Represents a row/column position on a 2D grid board.
 	/// </summary>
-	public struct BoardPosition {
+	public struct BoardPosition : IEquatable<BoardPosition> {
+		// IEquatable<T> defines the method bool Equals(T other) -- an overloaded .Equals method, rather than the Equals
+		// inherited from Object.
+
 		/// <summary>
 		/// The row of the position.
 		/// </summary>
@@ -37,6 +40,14 @@ namespace Othello.Game
 		// An overridden ToString makes debugging easier.
 		public override string ToString() {
 			return "(" + Row + ", " + Col + ")";
+		}
+
+		/// <summary>
+		/// Two board positions are equal if they have the same row and column.
+		/// </summary>
+		/// <param name="other"></param>
+		public bool Equals(BoardPosition other) {
+			return Row == other.Row && Col == other.Col;
 		}
 	}
 }

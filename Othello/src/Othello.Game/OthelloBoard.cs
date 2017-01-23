@@ -19,7 +19,7 @@ namespace Othello.Game {
 		/// Constructs an othello board in the starting game state.
 		/// </summary>
 		public OthelloBoard() {
-			CurrentPlayer = 1;
+			mCurrentPlayer = 1;
 			MoveHistory = new List<OthelloMove>();
 			mBoard[BOARD_SIZE / 2 - 1, BOARD_SIZE / 2 - 1] = -1;
 			mBoard[BOARD_SIZE / 2, BOARD_SIZE / 2] = -1;
@@ -27,11 +27,19 @@ namespace Othello.Game {
 			mBoard[BOARD_SIZE / 2 - 1, BOARD_SIZE / 2] = 1;
 		}
 
+		// Internally, we will represent pieces for each player as 1 or -1 (for player 2), which makes certain game 
+		// operations easier to code. Those values don't make sense to the public, however, so we will expose them in a 
+		// public property by mapping -1 to a value of 2. This will reduce coupling between other components and the 
+		// private model logic.
+		private int mCurrentPlayer;
+		
 		/// <summary>
-		/// An integer to represent the current player, where 1 == Black, -1 == White.
+		/// The player whose move it is.
 		/// </summary>
 		public int CurrentPlayer {
-			get; private set;
+			get {
+				return mCurrentPlayer == 1 ? 1 : 2;
+			}
 		}
 
 		/// <summary>
@@ -105,7 +113,7 @@ namespace Othello.Game {
 				}
 			}
 			// Update the rest of the board state.
-			CurrentPlayer = -CurrentPlayer;
+			mCurrentPlayer = -CurrentPlayer;
 			MoveHistory.Add(m);
 		}
 
@@ -205,7 +213,7 @@ namespace Othello.Game {
 				PassCount--;
 			}
 			// Reset the remaining game state.
-			CurrentPlayer = -CurrentPlayer;
+			mCurrentPlayer = -CurrentPlayer;
 			MoveHistory.RemoveAt(MoveHistory.Count - 1);
 		}
 	}
