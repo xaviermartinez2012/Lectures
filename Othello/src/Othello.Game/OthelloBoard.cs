@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Othello.Game {
 	/// <summary>
@@ -6,14 +7,16 @@ namespace Othello.Game {
 	/// by which player, as well as state for the current player and move history.
 	/// </summary>
 	public class OthelloBoard {
-		// "internal" allows other classes in this assembly to access the member.
-		internal const int BOARD_SIZE = 8;
+		public const int BOARD_SIZE = 8;
 
 		// The board is represented by an 8x8 matrix of signed bytes. Each entry represents one square on the board.
 		private sbyte[,] mBoard = new sbyte[BOARD_SIZE, BOARD_SIZE];
-
-		// A property to access the Board, but only within this assembly.
-		internal sbyte[,] Board { get { return mBoard; } }
+		
+		// Internally, we will represent pieces for each player as 1 or -1 (for player 2), which makes certain game 
+		// operations easier to code. Those values don't make sense to the public, however, so we will expose them in a 
+		// public property by mapping -1 to a value of 2. This will reduce coupling between other components and the 
+		// private model logic.
+		private int mCurrentPlayer;
 
 		/// <summary>
 		/// Constructs an othello board in the starting game state.
@@ -26,12 +29,6 @@ namespace Othello.Game {
 			mBoard[BOARD_SIZE / 2, BOARD_SIZE / 2 - 1] = 1;
 			mBoard[BOARD_SIZE / 2 - 1, BOARD_SIZE / 2] = 1;
 		}
-
-		// Internally, we will represent pieces for each player as 1 or -1 (for player 2), which makes certain game 
-		// operations easier to code. Those values don't make sense to the public, however, so we will expose them in a 
-		// public property by mapping -1 to a value of 2. This will reduce coupling between other components and the 
-		// private model logic.
-		private int mCurrentPlayer;
 		
 		/// <summary>
 		/// The player whose move it is.
@@ -63,6 +60,21 @@ namespace Othello.Game {
 			get; private set;
 		}
 
+		// This is how we will expose the state of the gameboard in a way that reduces coupling.
+		// No one needs to know HOW the data is represented; they simply need to know which player is
+		// at which position.
+		/// <summary>
+		/// Returns an integer representing which player has a piece at the given position, or 0 if the position
+		/// is empty.
+		/// </summary>
+		public int GetPieceAtPosition(BoardPosition boardPosition) {
+			sbyte pos = mBoard[boardPosition.Row, boardPosition.Col];
+			if (pos == -1) { // -1 maps to player 2.
+				return 2;
+			}
+			return pos; // otherwise the value is correct
+		}
+
 		/// <summary>
 		/// Applies the given move to the board state.
 		/// </summary>
@@ -75,8 +87,8 @@ namespace Othello.Game {
 			else {
 				PassCount = 0;
 				// Otherwise update the board at the move's position with the current player.
-				mBoard[m.Position.Row, m.Position.Col] = (sbyte)CurrentPlayer;
-				Value += CurrentPlayer;
+				mBoard[m.Position.Row, m.Position.Col] = (sbyte)mCurrentPlayer;
+				Value += mCurrentPlayer;
 
 				// Iterate through all 8 directions radially from the move's position.
 				for (int rDelta = -1; rDelta <= 1; rDelta++) {
@@ -90,20 +102,26 @@ namespace Othello.Game {
 						do {
 							newPos = newPos.Translate(rDelta, cDelta);
 							steps++;
-						} while (PositionInBounds(newPos) && PositionIsEnemy(newPos, CurrentPlayer));
+						} while (PositionInBounds(newPos) && PositionIsEnemy(newPos, mCurrentPlayer));
 
 						// This is a valid direction of flips if we moved at least 2 squares, and ended in bounds and on a
 						// "friendly" square.
-						if (steps > 1 && PositionInBounds(newPos) && mBoard[newPos.Row, newPos.Col] == CurrentPlayer) {
+						if (steps > 1 && PositionInBounds(newPos) && mBoard[newPos.Row, newPos.Col] == mCurrentPlayer) {
 							// Record this direction in the move's flipsets so the move can be undone.
-							m.FlipSets.Add(
-								new OthelloMove.FlipSet() { RowDelta = rDelta, ColDetla = cDelta, Count = steps - 1 });
+							m.AddFlipSet(
+								new OthelloMove.FlipSet() {
+									RowDelta = rDelta,
+									ColDelta = cDelta,
+									Count = steps - 1
+								});
+							// The FlipSet constructor takes no parameters; this syntax allows us to construct a FlipSet
+							// and initialize many of its properties in one expression.
 
 							// Repeatedly walk back the way we came, updating the board with the current player's piece.
 							newPos = newPos.Translate(-rDelta, -cDelta);
 							while (steps > 1) {
-								mBoard[newPos.Row, newPos.Col] = (sbyte)CurrentPlayer;
-								Value += 2 * CurrentPlayer;
+								mBoard[newPos.Row, newPos.Col] = (sbyte)mCurrentPlayer;
+								Value += 2 * mCurrentPlayer;
 
 								newPos = newPos.Translate(-rDelta, -cDelta);
 								steps--;
@@ -113,7 +131,7 @@ namespace Othello.Game {
 				}
 			}
 			// Update the rest of the board state.
-			mCurrentPlayer = -CurrentPlayer;
+			mCurrentPlayer = -mCurrentPlayer;
 			MoveHistory.Add(m);
 		}
 
@@ -159,11 +177,11 @@ namespace Othello.Game {
 							do {
 								newPos = newPos.Translate(rDelta, cDelta);
 								steps++;
-							} while (PositionInBounds(newPos) && PositionIsEnemy(newPos, CurrentPlayer));
+							} while (PositionInBounds(newPos) && PositionIsEnemy(newPos, mCurrentPlayer));
 
 							// This is a valid direction of flips if we moved at least 2 squares, and ended in bounds and on a
 							// "friendly" square.
-							if (steps > 1 && PositionInBounds(newPos) && mBoard[newPos.Row, newPos.Col] == CurrentPlayer) {
+							if (steps > 1 && PositionInBounds(newPos) && mBoard[newPos.Row, newPos.Col] == mCurrentPlayer) {
 								validSquare = true;
 							}
 						}
@@ -199,8 +217,8 @@ namespace Othello.Game {
 					BoardPosition pos = m.Position;
 					// For each flipset, walk along the flipset's direction resetting pieces.
 					for (int i = 1; i <= flipSet.Count; i++) {
-						pos = pos.Translate(flipSet.RowDelta, flipSet.ColDetla);
-						mBoard[pos.Row, pos.Col] = (sbyte)CurrentPlayer;
+						pos = pos.Translate(flipSet.RowDelta, flipSet.ColDelta);
+						mBoard[pos.Row, pos.Col] = (sbyte)mCurrentPlayer;
 					}
 				}
 
@@ -213,7 +231,7 @@ namespace Othello.Game {
 				PassCount--;
 			}
 			// Reset the remaining game state.
-			mCurrentPlayer = -CurrentPlayer;
+			mCurrentPlayer = -mCurrentPlayer;
 			MoveHistory.RemoveAt(MoveHistory.Count - 1);
 		}
 	}

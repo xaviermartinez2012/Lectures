@@ -59,10 +59,12 @@ namespace Othello.App
 				else if (input == "showHistory") {
 					// Show the move history in reverse order.
 					Console.WriteLine("History:");
-					int player = -board.CurrentPlayer;
+					bool playerIsBlack = board.CurrentPlayer != 1; 
+					// if board.CurrentPlayer == 1, then black is CURRENT player, not the most recent player.
+
 					foreach (var move in board.MoveHistory.Reverse()) {
-						Console.WriteLine("{0}: {1}", player == 1 ? "Black" : "White", move);
-						player = -player;
+						Console.WriteLine("{0}: {1}", playerIsBlack ? "Black" : "White", move);
+						playerIsBlack = !playerIsBlack;
 					}
 				}
 				else if (input == "showValue") {

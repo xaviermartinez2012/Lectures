@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Othello.Game
-{
+namespace Othello.Game {
 	/// <summary>
 	/// Represents a row/column position on a 2D grid board.
 	/// </summary>

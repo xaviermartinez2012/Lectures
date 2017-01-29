@@ -17,11 +17,22 @@ namespace Othello.Game {
 			/// <summary>
 			/// The column direction that pieces were flipped in.
 			/// </summary>
-			public int ColDetla { get; set; }
+			public int ColDelta { get; set; }
 			/// <summary>
 			/// The number of pieces that were flipped in the recorded direction.
 			/// </summary>
 			public int Count { get; set; }
+		}
+
+		// Our list of flips that were recorded when this move was applied.
+		private List<FlipSet> mFlipSets;
+
+		/// <summary>
+		/// Initializes a new OthelloMove instance representing the given board position.
+		/// </summary>
+		public OthelloMove(BoardPosition pos) {
+			Position = pos;
+			mFlipSets = new List<FlipSet>();
 		}
 
 		/// <summary>
@@ -35,18 +46,17 @@ namespace Othello.Game {
 		/// The position of the move.
 		/// </summary>
 		public BoardPosition Position { get; private set; }
-		/// <summary>
-		/// A list of FlipSet objects representing the different directions of flips made when this move was applied.
-		/// </summary>
-		public IList<FlipSet> FlipSets { get; private set; }
-
 
 		/// <summary>
-		/// Initializes a new OthelloMove instance representing the given board position.
+		/// A sequence of FlipSet objects representing the different directions of flips made when this move was applied.
 		/// </summary>
-		public OthelloMove(BoardPosition pos) {
-			Position = pos;
-			FlipSets = new List<FlipSet>();
+		public IEnumerable<FlipSet> FlipSets { get { return mFlipSets; } }
+
+		/// <summary>
+		/// Records a FlipSet for the move.
+		/// </summary>
+		public void AddFlipSet(FlipSet f) {
+			mFlipSets.Add(f);
 		}
 
 		/// <summary>
