@@ -63,7 +63,7 @@ namespace LinqIntro {
 			 * in a normal method.
 			 */
 			// Now I can simplify some of these
-			posRoots = numbers.Where(v => v > 0).Select(v => Math.Sqrt((double)v));
+			posRoots = numbers.Where(v => v > 0).Select(v => Math.Sqrt(v));
 
 			// These two functions are the core of LINQ, but there's SO MUCH MORE:
 			/* 
