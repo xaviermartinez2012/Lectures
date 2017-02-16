@@ -10,13 +10,21 @@ namespace LinqIntegrated {
 
 		public class Movie {
 			private long mEarnings; // I'll explain this later...
-
+			private string mProductionCompany;
 
 			public string Title { get; set; }
 			public int Year { get; set; }
 			public long Budget { get; set; }
 			public int RunningTime { get; set; }
-			public string ProductionCompany { get; set; }
+			public string ProductionCompany {
+				get {
+					Console.WriteLine($"Accessing ProductionCompany for {Title}");
+					return mProductionCompany;
+				}
+				set {
+					mProductionCompany = value;
+				}
+			}
 
 			public long Earnings {
 				get {
@@ -44,6 +52,7 @@ namespace LinqIntegrated {
 					Earnings = 538400000, RunningTime = 124 },
 			};
 
+
 			Console.WriteLine("Finding onlyPixarMovies \n");
 			// We can use LINQ to "query" this data to create sequences only containing certain elements from the original...
 			var onlyPixarMovies =
@@ -52,6 +61,10 @@ namespace LinqIntegrated {
 				select m // use a mapping function to select the final data
 			;
 			// onlyPixarMovies is IEnumerable<Movie> containing only the elements of movies that passed the where clause.
+			var f = onlyPixarMovies.Skip(2).First();
+
+
+			return;
 
 			// The above compiles to this:
 			var onlyPixarMovies2 = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios").Select(m => m); // the last Select is unnecessary
@@ -63,6 +76,8 @@ namespace LinqIntegrated {
 				from m in movies
 				where m.ProductionCompany != "Pixar Animation Studios"
 				select m.Title;
+
+			var nonPixarTitles2 = movies.Where(m => m.ProductionCompany != "Pixar Animation Studios").Select(m => m.Title);
 
 
 
@@ -87,6 +102,8 @@ namespace LinqIntegrated {
 				where m.ProductionCompany == "Pixar Animation Studios"
 				orderby m.Earnings descending // or leave this out for ascending
 				select m;
+
+			var pixarEarnings2 = movies.Where(m => m.ProductionCompany == "Pixar").OrderByDescending(m => m.Earnings).Select(m => m);
 
 
 
@@ -117,10 +134,10 @@ namespace LinqIntegrated {
 					where m.ProductionCompany == "Pixar Animation Studios"
 					select (double)m.Earnings / m.Budget
 				)
-				orderby margin
+				orderby margin descending
 				select margin
 			).First();
-			
+
 
 		}
 	}

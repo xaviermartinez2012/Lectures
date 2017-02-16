@@ -13,6 +13,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LinqIntro", "src\LinqIntro\
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LinqIntegrated", "src\LinqIntegrated\LinqIntegrated.xproj", "{EA55A947-E16C-4ED1-9A68-D0A037B79723}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Events", "src\Events\Events.xproj", "{EA5F01AD-81C7-49D4-8E1C-8379F9870929}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{EA55A947-E16C-4ED1-9A68-D0A037B79723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA55A947-E16C-4ED1-9A68-D0A037B79723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA55A947-E16C-4ED1-9A68-D0A037B79723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5F01AD-81C7-49D4-8E1C-8379F9870929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5F01AD-81C7-49D4-8E1C-8379F9870929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5F01AD-81C7-49D4-8E1C-8379F9870929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5F01AD-81C7-49D4-8E1C-8379F9870929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +50,6 @@ Global
 		{8B18CDFB-09EB-4B30-9568-0143C964C3C9} = {31A2FD9F-5306-48C2-9094-9F8593491E8E}
 		{326DC12A-E3B1-48B7-BC0A-A93DECCBBB69} = {31A2FD9F-5306-48C2-9094-9F8593491E8E}
 		{EA55A947-E16C-4ED1-9A68-D0A037B79723} = {31A2FD9F-5306-48C2-9094-9F8593491E8E}
+		{EA5F01AD-81C7-49D4-8E1C-8379F9870929} = {31A2FD9F-5306-48C2-9094-9F8593491E8E}
 	EndGlobalSection
 EndGlobal
