@@ -37,13 +37,13 @@ namespace Cecs475.Generics {
 		}
 
 		public static void PrintRats(IEnumerable<Rat> a) {
-			foreach (Animal x in a) {
+			foreach (Rat x in a) {
 				Console.WriteLine(x.Speak());
 			}
 		}
 
 		public static void PrintIguanas(IEnumerable<Iguana> a) {
-			foreach (Animal x in a) {
+			foreach (Iguana x in a) {
 				Console.WriteLine(x.Speak());
 			}
 		}
