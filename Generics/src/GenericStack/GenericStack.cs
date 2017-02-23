@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -94,6 +95,24 @@ namespace Cecs475.Generics {
 
 		IEnumerator IEnumerable.GetEnumerator() {
 			return new GenericStackEnumerator(this);
+		}
+
+
+
+		public static void Main(string[] args) {
+			GenericStack<int> ints = new GenericStack<int>();
+			ints.Push(5);
+			ints.Push(6);
+			ints.Push(7);
+			ints.Push(8);
+
+			foreach (int x in ints) {
+			}
+
+			var multiples =
+				from i in ints
+				where i % 5 == 0
+				select i * i;
 		}
 	}
 }

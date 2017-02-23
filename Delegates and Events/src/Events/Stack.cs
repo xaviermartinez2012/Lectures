@@ -28,9 +28,10 @@ namespace Events {
 			mData.Add(element);
 
 			// To notify the clients that are listening to ItemAdded, I invoke it like a function.
-			if (ItemAdded != null) {
-				ItemAdded(this, element);
-			}
+			Program.Stack_ItemAdded(this, element);
+			//if (ItemAdded != null) {
+			//	ItemAdded(this, element);
+			//}
 		}
 
 		public int Pop() {
