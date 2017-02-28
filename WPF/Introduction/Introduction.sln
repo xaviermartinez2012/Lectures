@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{04C0D01D-FB83-4A23-8969-36ED5F23190F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon", "src\Pokemon\Pokemon.csproj", "{65491475-3AD5-454D-AC54-BE0515479A4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Layouts", "src\Layouts\Layouts.csproj", "{9A81DB16-8840-43F2-B493-318933FFD111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binding", "src\Binding\Binding.csproj", "{84EECACD-B939-4ABA-A53A-97C022E4527B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65491475-3AD5-454D-AC54-BE0515479A4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65491475-3AD5-454D-AC54-BE0515479A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65491475-3AD5-454D-AC54-BE0515479A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65491475-3AD5-454D-AC54-BE0515479A4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A81DB16-8840-43F2-B493-318933FFD111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A81DB16-8840-43F2-B493-318933FFD111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A81DB16-8840-43F2-B493-318933FFD111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A81DB16-8840-43F2-B493-318933FFD111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84EECACD-B939-4ABA-A53A-97C022E4527B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84EECACD-B939-4ABA-A53A-97C022E4527B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84EECACD-B939-4ABA-A53A-97C022E4527B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84EECACD-B939-4ABA-A53A-97C022E4527B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{65491475-3AD5-454D-AC54-BE0515479A4D} = {04C0D01D-FB83-4A23-8969-36ED5F23190F}
+		{9A81DB16-8840-43F2-B493-318933FFD111} = {04C0D01D-FB83-4A23-8969-36ED5F23190F}
+		{84EECACD-B939-4ABA-A53A-97C022E4527B} = {04C0D01D-FB83-4A23-8969-36ED5F23190F}
+	EndGlobalSection
+EndGlobal
