@@ -1,0 +1,69 @@
+﻿<Window x:Class="Cecs475.War.Application.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cecs475.War.Application"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="Auto" Width="684.211">
+    <Window.Resources>
+        <!-- The ViewModel is declared here as a resource of the window. It is automatically constructed. -->
+        <local:WarViewModel x:Key="WarViewModel"/>
+    </Window.Resources>
+    <!-- The controls of this StackPanel will be able to bind to properties of the ViewModel. -->
+    <StackPanel DataContext="{StaticResource WarViewModel}" Background="Beige">
+        <Label HorizontalAlignment="Center" 
+               FontSize="36" FontFamily="Comic Sans MS" FontWeight="Bold">
+            WAR
+        </Label>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <!-- The controls of the grid need a converter to map a Card into an Image to display. -->
+                <local:CardImageConverter x:Key="CardImageConverter"/>
+            </Grid.Resources>
+            <!-- The card images are transparent PNG, so we need to give them a white background. -->
+            <StackPanel Grid.Row="0" Grid.Column="0" Background="White">
+                <!-- We bind the Source property to the Player1Card property, using our converter
+                     to turn the Card object into an Image -->
+                <Image Source="{Binding Player1Card, Converter={StaticResource CardImageConverter}}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="2" Background="White">
+                <Image Source="{Binding Player2Card, Converter={StaticResource CardImageConverter}}"/>
+            </StackPanel>
+            <WrapPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                <WrapPanel.Resources>
+                    <!-- This Style sets the FontSize of all the labels in the panel. -->
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="FontSize" Value="24"/>
+                    </Style>
+                </WrapPanel.Resources>
+                <Label Content="{Binding Player1Wins}"/>
+                <Label>wins</Label>
+            </WrapPanel>
+            <WrapPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center">
+                <WrapPanel.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="FontSize" Value="24"/>
+                    </Style>
+                </WrapPanel.Resources>
+                <Label Content="{Binding Player2Wins}"/>
+                <Label>wins</Label>
+            </WrapPanel>
+        </Grid>
+        <Button x:Name="mDealButton" Click="mDealButton_Click" 
+                IsEnabled="{Binding CanDeal}" Width="100" 
+                FontFamily="Lucida Console" FontSize="24" FontWeight="Bold">
+            Deal
+        </Button>
+    </StackPanel>
+</Window>
+
