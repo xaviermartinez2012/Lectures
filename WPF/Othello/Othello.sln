@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C889C765-ABDA-41CF-9B92-A5F20638578C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cecs475.Othello.Model", "src\Cecs475.Othello.Model\Cecs475.Othello.Model.csproj", "{9822A5E9-86FF-4C96-A183-8DAE6D8CE081}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cecs475.Othello.Application", "src\Cecs475.Othello.Application\Cecs475.Othello.Application.csproj", "{103EA8F6-8A13-4F8C-8747-92C86F3759B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9822A5E9-86FF-4C96-A183-8DAE6D8CE081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9822A5E9-86FF-4C96-A183-8DAE6D8CE081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9822A5E9-86FF-4C96-A183-8DAE6D8CE081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9822A5E9-86FF-4C96-A183-8DAE6D8CE081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{103EA8F6-8A13-4F8C-8747-92C86F3759B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103EA8F6-8A13-4F8C-8747-92C86F3759B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{103EA8F6-8A13-4F8C-8747-92C86F3759B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{103EA8F6-8A13-4F8C-8747-92C86F3759B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9822A5E9-86FF-4C96-A183-8DAE6D8CE081} = {C889C765-ABDA-41CF-9B92-A5F20638578C}
+		{103EA8F6-8A13-4F8C-8747-92C86F3759B0} = {C889C765-ABDA-41CF-9B92-A5F20638578C}
+	EndGlobalSection
+EndGlobal

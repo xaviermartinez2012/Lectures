@@ -31,7 +31,7 @@ namespace Binding {
 
 			// Create a Employee object and bind it to our two controls.
 			Employee e = new Binding.Employee() {
-				Age = 40
+				Age = 20
 			};
 			mSalaryLabel.DataContext = e;
 			mAgeText.DataContext = e;

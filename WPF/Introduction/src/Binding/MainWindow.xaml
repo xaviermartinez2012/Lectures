@@ -15,7 +15,7 @@
             </WrapPanel>
             <WrapPanel>
                <Label>Salary:</Label>
-               <Label x:Name="mSalaryLabel" Width="100" Content="{Binding Salary, Mode=OneTime}"/>
+               <Label x:Name="mSalaryLabel" Width="100" Content="{Binding Salary, Mode=OneWay}"/>
             </WrapPanel>
             <Button Width="100" Click="Button_Click">Set Age to 100</Button>
          </StackPanel>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="Cecs475.Othello.Application.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cecs475.Othello.Application"
+        mc:Ignorable="d"
+        Title="Othello!" Width="500">
+    <DockPanel>
+        <StatusBar Height="30" DockPanel.Dock="Bottom" FontSize="10" DataContext="{Binding ElementName=OthelloView}">
+            <WrapPanel>
+                <Label>Score:</Label>
+                <Label Content="{Binding Model.BoardValue}"/>
+            </WrapPanel>
+        </StatusBar>
+        <local:OthelloView x:Name="OthelloView"/>
+        
+    </DockPanel>
+</Window>
