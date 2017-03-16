@@ -4,7 +4,7 @@ namespace Cecs475.BoardGames.TicTacToe.View {
 	public class TicTacToeGameType : IGameType {
 		public string GameName {
 			get {
-				return "TicTacToe";
+				return "Tic Tac Toe";
 			}
 		}
 
