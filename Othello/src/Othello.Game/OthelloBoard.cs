@@ -211,6 +211,7 @@ namespace Othello.Game {
 			if (!m.IsPass) {
 				// Reset the board at the move's position.
 				mBoard[m.Position.Row, m.Position.Col] = 0;
+				Value += mCurrentPlayer;
 
 				// Iterate through the move's recorded flipsets.
 				foreach (var flipSet in m.FlipSets) {
@@ -219,6 +220,7 @@ namespace Othello.Game {
 					for (int i = 1; i <= flipSet.Count; i++) {
 						pos = pos.Translate(flipSet.RowDelta, flipSet.ColDelta);
 						mBoard[pos.Row, pos.Col] = (sbyte)mCurrentPlayer;
+						Value += 2 * mCurrentPlayer;
 					}
 				}
 
