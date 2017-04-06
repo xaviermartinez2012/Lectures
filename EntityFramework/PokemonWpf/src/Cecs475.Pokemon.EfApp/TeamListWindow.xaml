@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cecs475.Pokemon.EfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded" Closing="Window_Closing">
+   <StackPanel>
+      <ListView x:Name="mTeamList" Height="200" MouseDoubleClick="mTeamList_MouseDoubleClick">
+         <ListView.ItemTemplate>
+            <DataTemplate>
+               <Label Content="{Binding Title}"/>
+            </DataTemplate>
+         </ListView.ItemTemplate>
+      </ListView>
+      <WrapPanel>
+         <TextBox x:Name="mNewTeamText" Width="200">
+            New team name
+         </TextBox>
+         <Button Margin="5,0,0,0" x:Name="mNewTeamNameBtn" Click="mNewTeamNameBtn_Click">Create new team</Button>
+      </WrapPanel>
+   </StackPanel>
+</Window>

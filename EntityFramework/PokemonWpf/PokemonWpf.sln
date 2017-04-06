@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67E6F219-C13A-437A-B39D-E27F276A581E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cecs475.Pokemon.Model", "src\Cecs475.Pokemon.Model\Cecs475.Pokemon.Model.csproj", "{1101048E-1856-4195-AD83-BD7A662ED329}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cecs475.Pokemon.EfApp", "src\Cecs475.Pokemon.EfApp\Cecs475.Pokemon.EfApp.csproj", "{E7F2554D-5BC8-43E1-A4DD-1B356C507827}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1101048E-1856-4195-AD83-BD7A662ED329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1101048E-1856-4195-AD83-BD7A662ED329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1101048E-1856-4195-AD83-BD7A662ED329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1101048E-1856-4195-AD83-BD7A662ED329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7F2554D-5BC8-43E1-A4DD-1B356C507827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7F2554D-5BC8-43E1-A4DD-1B356C507827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7F2554D-5BC8-43E1-A4DD-1B356C507827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7F2554D-5BC8-43E1-A4DD-1B356C507827}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1101048E-1856-4195-AD83-BD7A662ED329} = {67E6F219-C13A-437A-B39D-E27F276A581E}
+		{E7F2554D-5BC8-43E1-A4DD-1B356C507827} = {67E6F219-C13A-437A-B39D-E27F276A581E}
+	EndGlobalSection
+EndGlobal

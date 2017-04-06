@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pokemon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Hp" Type="int" Nullable="false" />
+          <Property Name="Attack" Type="int" Nullable="false" />
+          <Property Name="Defense" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PokemonTeam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PokemonTeamPokemon">
+          <Key>
+            <PropertyRef Name="PokemonId" />
+            <PropertyRef Name="PokemonTeamId" />
+          </Key>
+          <Property Name="PokemonId" Type="int" Nullable="false" />
+          <Property Name="PokemonTeamId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PokemonTeamPokemon_Pokemon">
+          <End Role="Pokemon" Type="Self.Pokemon" Multiplicity="1" />
+          <End Role="PokemonTeamPokemon" Type="Self.PokemonTeamPokemon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokemon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PokemonTeamPokemon">
+              <PropertyRef Name="PokemonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PokemonTeamPokemon_PokemonTeam">
+          <End Role="PokemonTeam" Type="Self.PokemonTeam" Multiplicity="1" />
+          <End Role="PokemonTeamPokemon" Type="Self.PokemonTeamPokemon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PokemonTeam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PokemonTeamPokemon">
+              <PropertyRef Name="PokemonTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterModelStoreContainer">
+          <EntitySet Name="Pokemon" EntityType="Self.Pokemon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PokemonTeam" EntityType="Self.PokemonTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PokemonTeamPokemon" EntityType="Self.PokemonTeamPokemon" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PokemonTeamPokemon_Pokemon" Association="Self.FK_PokemonTeamPokemon_Pokemon">
+            <End Role="Pokemon" EntitySet="Pokemon" />
+            <End Role="PokemonTeamPokemon" EntitySet="PokemonTeamPokemon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PokemonTeamPokemon_PokemonTeam" Association="Self.FK_PokemonTeamPokemon_PokemonTeam">
+            <End Role="PokemonTeam" EntitySet="PokemonTeam" />
+            <End Role="PokemonTeamPokemon" EntitySet="PokemonTeamPokemon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pokemon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hp" Type="Int32" Nullable="false" />
+          <Property Name="Attack" Type="Int32" Nullable="false" />
+          <Property Name="Defense" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PokemonTeam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pokemons" Relationship="Self.PokemonTeamPokemon" FromRole="PokemonTeam" ToRole="Pokemon" />
+        </EntityType>
+        <Association Name="PokemonTeamPokemon">
+          <End Role="Pokemon" Type="Self.Pokemon" Multiplicity="*" />
+          <End Role="PokemonTeam" Type="Self.PokemonTeam" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PokemonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pokemons" EntityType="Self.Pokemon" />
+          <EntitySet Name="PokemonTeams" EntityType="Self.PokemonTeam" />
+          <AssociationSet Name="PokemonTeamPokemon" Association="Self.PokemonTeamPokemon">
+            <End Role="Pokemon" EntitySet="Pokemons" />
+            <End Role="PokemonTeam" EntitySet="PokemonTeams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="PokemonEntities">
+          <EntitySetMapping Name="Pokemons">
+            <EntityTypeMapping TypeName="masterModel.Pokemon">
+              <MappingFragment StoreEntitySet="Pokemon">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Hp" ColumnName="Hp" />
+                <ScalarProperty Name="Attack" ColumnName="Attack" />
+                <ScalarProperty Name="Defense" ColumnName="Defense" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PokemonTeams">
+            <EntityTypeMapping TypeName="masterModel.PokemonTeam">
+              <MappingFragment StoreEntitySet="PokemonTeam">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PokemonTeamPokemon" TypeName="masterModel.PokemonTeamPokemon" StoreEntitySet="PokemonTeamPokemon">
+            <EndProperty Name="Pokemon">
+              <ScalarProperty Name="Id" ColumnName="PokemonId" />
+            </EndProperty>
+            <EndProperty Name="PokemonTeam">
+              <ScalarProperty Name="Id" ColumnName="PokemonTeamId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

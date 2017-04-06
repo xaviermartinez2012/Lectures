@@ -1,0 +1,30 @@
+﻿<Window x:Class="Cecs475.Pokemon.EfApp.TeamEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cecs475.Pokemon.EfApp"
+        mc:Ignorable="d"
+        Title="TeamEditor" Height="300" Width="300">
+   <!-- Since we don't know the PokemonTeam we'll be editing at compile time, we use a DynamicResource. -->
+   <StackPanel DataContext="{DynamicResource TheTeam}">
+      <ListView x:Name="mTeamPokemonList" ItemsSource="{Binding Pokemons}" Height="200">
+         <ListView.ItemTemplate>
+            <DataTemplate>
+               <Label Content="{Binding Name}"/>
+            </DataTemplate>
+         </ListView.ItemTemplate>
+      </ListView>
+      <WrapPanel>
+         <!-- Likewise for the list of all Pokemon, which is passed to the window's constructor at runtime. -->
+         <ComboBox x:Name="mAllPokemonList" ItemsSource="{DynamicResource AllPokemon}" Width="100">
+            <ComboBox.ItemTemplate>
+               <DataTemplate>
+                  <Label Content="{Binding Name}"/>
+               </DataTemplate>
+            </ComboBox.ItemTemplate>
+         </ComboBox>
+         <Button x:Name="mAddBtn" Margin="5,0,0,0" Click="mAddBtn_Click">Add to team</Button>
+      </WrapPanel>
+   </StackPanel>
+</Window>
