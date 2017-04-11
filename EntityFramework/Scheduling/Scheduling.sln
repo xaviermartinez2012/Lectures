@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9B9ADD91-FF1B-443E-9299-150ECDB5AE16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cecs475.Scheduling.Model", "src\Cecs475.Scheduling.Model\Cecs475.Scheduling.Model.csproj", "{CC8502E8-2C98-4AD2-86E8-16AB5208596A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "src\Test\Test.csproj", "{7E58755D-E6C8-4838-A381-AA8C6C7E84B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cecs475.Scheduling.WpfApp", "src\Cecs475.Scheduling.WpfApp\Cecs475.Scheduling.WpfApp.csproj", "{E6260849-F459-4CF4-B847-82E390E44C8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC8502E8-2C98-4AD2-86E8-16AB5208596A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC8502E8-2C98-4AD2-86E8-16AB5208596A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC8502E8-2C98-4AD2-86E8-16AB5208596A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC8502E8-2C98-4AD2-86E8-16AB5208596A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E58755D-E6C8-4838-A381-AA8C6C7E84B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E58755D-E6C8-4838-A381-AA8C6C7E84B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E58755D-E6C8-4838-A381-AA8C6C7E84B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E58755D-E6C8-4838-A381-AA8C6C7E84B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6260849-F459-4CF4-B847-82E390E44C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6260849-F459-4CF4-B847-82E390E44C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6260849-F459-4CF4-B847-82E390E44C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6260849-F459-4CF4-B847-82E390E44C8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CC8502E8-2C98-4AD2-86E8-16AB5208596A} = {9B9ADD91-FF1B-443E-9299-150ECDB5AE16}
+		{7E58755D-E6C8-4838-A381-AA8C6C7E84B7} = {9B9ADD91-FF1B-443E-9299-150ECDB5AE16}
+		{E6260849-F459-4CF4-B847-82E390E44C8A} = {9B9ADD91-FF1B-443E-9299-150ECDB5AE16}
+	EndGlobalSection
+EndGlobal
