@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace Cecs475.Scheduling.Web.Controllers {
@@ -25,6 +26,9 @@ namespace Cecs475.Scheduling.Web.Controllers {
 		[Route("")]
 		public Model.RegistrationResults RegisterForCourse([FromBody]RegistrationDto studentCourse) {
 			Model.Student student = mContext.Students.Where(s => s.Id == studentCourse.StudentID).FirstOrDefault();
+			// Simulate a slow connection / complicated operation by sleeping.
+			Thread.Sleep(3000);
+
 			if (student == null) {
 				throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound,
 					$"Student id \"{studentCourse.StudentID}\" not found"));
@@ -54,6 +58,7 @@ namespace Cecs475.Scheduling.Web.Controllers {
 				section.EnrolledStudents.Add(student);
 				mContext.SaveChanges();
 			}
+
 			return regResult;
 		}
 	}
