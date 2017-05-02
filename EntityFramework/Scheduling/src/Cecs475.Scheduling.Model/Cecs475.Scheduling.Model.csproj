@@ -54,6 +54,7 @@
     <Compile Include="CatalogContext.cs" />
     <Compile Include="CatalogCourse.cs" />
     <Compile Include="ClassSchedule.cs" />
+    <Compile Include="CourseGrade.cs" />
     <Compile Include="CourseSection.cs" />
     <Compile Include="Instructor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

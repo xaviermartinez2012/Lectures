@@ -10,6 +10,7 @@ namespace Cecs475.Scheduling.Model {
 		public DbSet<SemesterTerm> SemesterTerms { get; set; }
 		public DbSet<Instructor> Instructors { get; set; }
 		public DbSet<CatalogCourse> Courses { get; set; }
+		public DbSet<Student> Students { get; set; }
 
 		// The parameter to the base constructor is the name of the ConnectionString in app.config
 		public CatalogContext() : base("name=Catalog") { }
