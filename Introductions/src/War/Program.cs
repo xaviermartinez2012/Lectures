@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+ * Lecture 2: Card game program. 
+ * Lessons:
+ *		Type basics
+ *		Members: fields, properties, methods, events
+ *		I/O
+ *		Flow control
+ *		Enums
+ */
+
+
+using System;
 
 namespace Cecs475.War {
 	public class Program {
