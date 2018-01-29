@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Othello.App</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Othello.App</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Othello.Game\Othello.Game.csproj" />
+  </ItemGroup>
+
+</Project>

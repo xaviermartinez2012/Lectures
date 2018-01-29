@@ -29,7 +29,7 @@ namespace Othello.Game {
 			for (int i = 0; i < OthelloBoard.BOARD_SIZE; i++) {
 				output.Write("{0} ", i);
 				for (int j = 0; j < OthelloBoard.BOARD_SIZE; j++) {
-					int space = board.GetPieceAtPosition(new BoardPosition(i, j));
+					int space = board.GetPlayerAtPosition(new BoardPosition(i, j));
 					output.Write("{0} ", space == 0 ? '.' : space == 1 ? 'B' : 'W');
 				}
 				output.WriteLine();
