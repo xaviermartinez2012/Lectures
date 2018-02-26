@@ -90,19 +90,19 @@ namespace LinqIntegrated {
 
 
 			Console.WriteLine("Finding pixarAverageLengthExceptLongest  \n");
-			var pixarAverageLengthExceptLongest = (
-				from m in movies
-				where m.ProductionCompany == "Pixar Animation Studios"
-				orderby m.RunningTime descending
-				select m.RunningTime
-			).Skip(1).Average();
+			var pixarAverageLengthExceptLongest = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios")
+				.OrderByDescending(m => m.RunningTime)
+				.Select(m => m.RunningTime)
+				.Skip(1)
+				.Average();
 
 
 
 			Console.WriteLine("Finding pixarBestProfitMargin  \n");
 			var pixarBestProfitMargin = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios")
 				.Select(m => (double)m.Earnings / m.Budget)
-				.OrderByDescending(pr => pr).First();
+				.OrderByDescending(pr => pr)
+				.First();
 
 		}
 	}

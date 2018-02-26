@@ -48,6 +48,12 @@ namespace Cecs475.Generics {
 			}
 		}
 
+		public static Animal CreateAnimal() => new Iguana();
+
+		public static Iguana CreateIguana() => new Iguana();
+
+		public static Rat CreateRat() => new Rat();
+
 		public static void Main(string[] args) {
 			// Suppose I have a few collections of animals.
 			Iguana[] igs = new Iguana[] { new Iguana() };
@@ -64,7 +70,7 @@ namespace Cecs475.Generics {
 			 * 
 			 * Why??
 			 */
-			 
+
 			// How about these?
 			/*
 			 * PrintAnimals(animals);
@@ -75,6 +81,33 @@ namespace Cecs475.Generics {
 			 * 
 			 * Why??
 			 */
+
+
+			/* And these???
+			 * Action<Animal> a2 = PrintAnimal;
+			 * Action<Rat> a2 = PrintRat;
+			
+			 * Action<Iguana> a1 = PrintAnimal;
+			 * Action<Rat> a1 = PrintAnimal;
+			 * Action<Animal> a2 = PrintRat;
+			*/
+
+
+			/* Or THESE???
+			 * Func<Rat> = CreateRat;
+			 * Func<Iguana> = CreateRat;
+			 * Func<Animal> = CreateRat;
+			 * 
+			 */
+
+			// CONCLUSIONS:
+
+			// A collection can be covariant if it is ____________________.
+			// A collection can be contravariant if it is ____________________.
+
+
+			// A function pointer/delegate can be covariant in its ________________.
+			// A function pointer/delegate can be contravariant in its ________________.
 		}
 	}
 }
