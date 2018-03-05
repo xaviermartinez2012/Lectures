@@ -113,6 +113,7 @@
 			this.mPowerText1.Size = new System.Drawing.Size(100, 20);
 			this.mPowerText1.TabIndex = 4;
 			this.mPowerText1.Text = "75";
+			this.mPowerText1.TextChanged += new System.EventHandler(this.mPowerText1_TextChanged);
 			// 
 			// mDefenseText1
 			// 
@@ -121,6 +122,7 @@
 			this.mDefenseText1.Size = new System.Drawing.Size(100, 20);
 			this.mDefenseText1.TabIndex = 3;
 			this.mDefenseText1.Text = "115";
+			this.mDefenseText1.TextChanged += new System.EventHandler(this.mDefenseText1_TextChanged);
 			// 
 			// mAttackText1
 			// 
@@ -129,6 +131,7 @@
 			this.mAttackText1.Size = new System.Drawing.Size(100, 20);
 			this.mAttackText1.TabIndex = 2;
 			this.mAttackText1.Text = "120";
+			this.mAttackText1.TextChanged += new System.EventHandler(this.mAttackText1_TextChanged);
 			// 
 			// mLevelText1
 			// 
@@ -137,6 +140,7 @@
 			this.mLevelText1.Size = new System.Drawing.Size(100, 20);
 			this.mLevelText1.TabIndex = 1;
 			this.mLevelText1.Text = "100";
+			this.mLevelText1.TextChanged += new System.EventHandler(this.mLevelText1_TextChanged);
 			// 
 			// label6
 			// 
@@ -153,7 +157,7 @@
 			this.mHPText1.Name = "mHPText1";
 			this.mHPText1.Size = new System.Drawing.Size(100, 20);
 			this.mHPText1.TabIndex = 0;
-			this.mHPText1.Text = "85";
+			this.mHPText1.TextChanged += new System.EventHandler(this.mHPText1_TextChanged);
 			// 
 			// label5
 			// 
@@ -217,6 +221,7 @@
 			this.mPowerText2.Size = new System.Drawing.Size(100, 20);
 			this.mPowerText2.TabIndex = 4;
 			this.mPowerText2.Text = "100";
+			this.mPowerText2.TextChanged += new System.EventHandler(this.mPowerText2_TextChanged);
 			// 
 			// mDefenseText2
 			// 
@@ -225,6 +230,7 @@
 			this.mDefenseText2.Size = new System.Drawing.Size(100, 20);
 			this.mDefenseText2.TabIndex = 3;
 			this.mDefenseText2.Text = "50";
+			this.mDefenseText2.TextChanged += new System.EventHandler(this.mDefenseText2_TextChanged);
 			// 
 			// mAttackText2
 			// 
@@ -233,6 +239,7 @@
 			this.mAttackText2.Size = new System.Drawing.Size(100, 20);
 			this.mAttackText2.TabIndex = 2;
 			this.mAttackText2.Text = "60";
+			this.mAttackText2.TextChanged += new System.EventHandler(this.mAttackText2_TextChanged);
 			// 
 			// mLevelText2
 			// 
@@ -241,6 +248,7 @@
 			this.mLevelText2.Size = new System.Drawing.Size(100, 20);
 			this.mLevelText2.TabIndex = 1;
 			this.mLevelText2.Text = "100";
+			this.mLevelText2.TextChanged += new System.EventHandler(this.mLevelText2_TextChanged);
 			// 
 			// label7
 			// 
@@ -258,6 +266,7 @@
 			this.mHPText2.Size = new System.Drawing.Size(100, 20);
 			this.mHPText2.TabIndex = 0;
 			this.mHPText2.Text = "39";
+			this.mHPText2.TextChanged += new System.EventHandler(this.mHPText2_TextChanged);
 			// 
 			// label8
 			// 
