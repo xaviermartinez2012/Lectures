@@ -25,6 +25,9 @@ namespace Cecs475.War.Application {
 		private void mDealButton_Click(object sender, RoutedEventArgs e) {
 			// Retrieve the ViewModel from the window, then invoke the DealOneCard method.
 			var model = this.FindResource("WarViewModel") as WarViewModel;
+
+
+
 			model.DealOneCard();
 
 			// NOTICE: we do not update the Images, the score labels, or any other control

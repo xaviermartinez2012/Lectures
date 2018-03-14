@@ -72,24 +72,24 @@ namespace WinForms_Basics {
 		}
 
 		private void mHPText2_TextChanged(object sender, EventArgs e) {
-			mCharmander.HP = Convert.ToInt32(mHPText1.Text);
+			mCharmander.HP = Convert.ToInt32(mHPText2.Text);
 		}
 
 		private void mLevelText2_TextChanged(object sender, EventArgs e) {
-			mCharmander.Level = Convert.ToInt32(mLevelText1.Text);
+			mCharmander.Level = Convert.ToInt32(mLevelText2.Text);
 		}
 
 		private void mAttackText2_TextChanged(object sender, EventArgs e) {
-			mCharmander.Attack = Convert.ToInt32(mAttackText1.Text);
+			mCharmander.Attack = Convert.ToInt32(mAttackText2.Text);
 		}
 
 		private void mDefenseText2_TextChanged(object sender, EventArgs e) {
-			mCharmander.Defense = Convert.ToInt32(mDefenseText1.Text);
+			mCharmander.Defense = Convert.ToInt32(mDefenseText2.Text);
 
 		}
 
 		private void mPowerText2_TextChanged(object sender, EventArgs e) {
-			mCharmanderAttackPower = Convert.ToInt32(mPowerText1.Text);
+			mCharmanderAttackPower = Convert.ToInt32(mPowerText2.Text);
 		}
 
 

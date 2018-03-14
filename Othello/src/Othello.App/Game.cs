@@ -14,7 +14,7 @@ namespace Othello.App
 			OthelloBoard board = new OthelloBoard();
 			OthelloView view = new OthelloView();
 
-			while (true) {
+			while (!board.IsFinished) {
 				// Print the view.
 				Console.WriteLine();
 				Console.WriteLine();
@@ -63,13 +63,13 @@ namespace Othello.App
 					// if board.CurrentPlayer == 1, then black is CURRENT player, not the most recent player.
 
 					foreach (var move in board.MoveHistory.Reverse()) {
-						Console.WriteLine("{0}: {1}", move.Player == 1 ? "Black" : "White", move);
+						Console.WriteLine("{0}: {1}", view.GetPlayerString(move.Player), move);
 					}
 				}
 				else if (input == "showAdvantage") {
 					Console.WriteLine("Advantage: {0} in favor of {1}", 
 						board.CurrentAdvantage.Advantage, 
-						board.CurrentAdvantage.Player == 1 ? "Black" : "White");
+						view.GetPlayerString(board.CurrentAdvantage.Player));
 				}
 
 			}

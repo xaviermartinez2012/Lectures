@@ -94,9 +94,9 @@ namespace Cecs475.Generics {
 
 
 			/* Or THESE???
-			 * Func<Rat> = CreateRat;
-			 * Func<Iguana> = CreateRat;
-			 * Func<Animal> = CreateRat;
+			 * Func<Rat> f1 = CreateRat;
+			 * Func<Iguana> f2 = CreateRat;
+			 * Func<Animal> f3 = CreateRat;
 			 * 
 			 */
 

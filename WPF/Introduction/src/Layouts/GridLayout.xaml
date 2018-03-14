@@ -21,7 +21,7 @@
       <Label Background="Azure" Grid.Row="1" Grid.Column="0">Sizes of row/column is specified in Definitions</Label>
       <CheckBox Grid.Row="0" Grid.Column="1">This is in column 1</CheckBox>
       <StackPanel Grid.Row="2" Grid.Column="0">
-         <Button>Naturally, other layouts can go in a grid</Button>
+         <Button x:Name="myButton" Click="Button_Click">Naturally, other layouts can go in a grid</Button>
          <Label>Like this StackPanel containing a button and label</Label>
       </StackPanel>
       <Label Grid.Row="3" Grid.Column="1">Kind of like an HTML &lt;table&gt;</Label>
