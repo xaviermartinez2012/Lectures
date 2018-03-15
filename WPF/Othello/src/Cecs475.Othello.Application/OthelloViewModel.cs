@@ -46,7 +46,7 @@ namespace Cecs475.Othello.Application {
 				)
 				select new OthelloSquare() {
 					Position = pos,
-					Player = mBoard.GetPieceAtPosition(pos)
+					Player = mBoard.GetPlayerAtPosition(pos)
 				}
 			);
 
@@ -69,10 +69,10 @@ namespace Cecs475.Othello.Application {
 				select new BoardPosition(r, c);
 			int i = 0;
 			foreach (var pos in newSquares) {
-				mSquares[i].Player = mBoard.GetPieceAtPosition(pos);
+				mSquares[i].Player = mBoard.GetPlayerAtPosition(pos);
 				i++;
 			}
-			OnPropertyChanged(nameof(BoardValue));
+			OnPropertyChanged(nameof(CurrentAdvantage));
 		}
 
 		public ObservableCollection<OthelloSquare> Squares {
@@ -83,7 +83,7 @@ namespace Cecs475.Othello.Application {
 			get; private set;
 		}
 
-		public int BoardValue { get { return mBoard.Value; } }
+		public GameAdvantage CurrentAdvantage { get { return mBoard.CurrentAdvantage; } }
 
 	}
 }
