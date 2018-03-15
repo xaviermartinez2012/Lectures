@@ -39,15 +39,11 @@ namespace Cecs475.Othello.Application {
 		public OthelloViewModel() {
 			mBoard = new OthelloBoard();
 			mSquares = new ObservableCollection<OthelloSquare>(
-				from pos in (
-					from r in Enumerable.Range(0, 8)
-					from c in Enumerable.Range(0, 8)
-					select new BoardPosition(r, c)
-				)
-				select new OthelloSquare() {
-					Position = pos,
-					Player = mBoard.GetPlayerAtPosition(pos)
-				}
+				BoardPosition.GetRectangularPositions(8, 8)
+				.Select(p =>new OthelloSquare() {
+					Position = p,
+					Player = mBoard.GetPlayerAtPosition(p)
+				})
 			);
 
 			PossibleMoves = new HashSet<BoardPosition>(mBoard.GetPossibleMoves().Select(m => m.Position));
@@ -63,10 +59,7 @@ namespace Cecs475.Othello.Application {
 			}
 
 			PossibleMoves = new HashSet<BoardPosition>(mBoard.GetPossibleMoves().Select(m => m.Position));
-			var newSquares =
-				from r in Enumerable.Range(0, 8)
-				from c in Enumerable.Range(0, 8)
-				select new BoardPosition(r, c);
+			var newSquares = BoardPosition.GetRectangularPositions(8, 8);
 			int i = 0;
 			foreach (var pos in newSquares) {
 				mSquares[i].Player = mBoard.GetPlayerAtPosition(pos);
