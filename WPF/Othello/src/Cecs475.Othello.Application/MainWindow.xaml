@@ -10,7 +10,7 @@
         <StatusBar Height="30" DockPanel.Dock="Bottom" FontSize="10" DataContext="{Binding ElementName=OthelloView}">
             <WrapPanel>
                 <Label>Score:</Label>
-                <Label Content="{Binding Model.BoardValue}"/>
+                <Label Content="{Binding Model.CurrentAdvantage.Advantage}"/>
             </WrapPanel>
         </StatusBar>
         <local:OthelloView x:Name="OthelloView"/>

@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardDirection.cs" />
     <Compile Include="BoardPosition.cs" />
+    <Compile Include="GameAdvantage.cs" />
     <Compile Include="OthelloBoard.cs" />
     <Compile Include="OthelloMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
