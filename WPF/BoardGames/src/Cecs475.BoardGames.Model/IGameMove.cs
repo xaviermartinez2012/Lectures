@@ -1,10 +1,14 @@
 ﻿using System;
 
-namespace Cecs475.BoardGames {
+namespace Cecs475.BoardGames.Model {
 	/// <summary>
-	/// Represents one move that can be or will be applied to a particular IGameBoard implementation.
+	/// Represents a move that can be (or has been) applied to a game board.
 	/// </summary>
 	public interface IGameMove : IEquatable<IGameMove> {
-
+		/// <summary>
+		/// The player that applied this move, if the move has been applied to a board. If it has not,
+		/// this property is undefined.
+		/// </summary>
+		int Player { get; }
 	}
 }

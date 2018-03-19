@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cecs475.BoardGames.WpfView;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -18,10 +19,7 @@ namespace Cecs475.BoardGames.Othello.View {
 	/// <summary>
 	/// Interaction logic for OthelloView.xaml
 	/// </summary>
-	public partial class OthelloView : UserControl {
-		public static SolidColorBrush RED_BRUSH = new SolidColorBrush(Colors.Red);
-		public static SolidColorBrush GREEN_BRUSH = new SolidColorBrush(Colors.Green);
-
+	public partial class OthelloView : UserControl, IWpfGameView {
 		public OthelloView() {
 			InitializeComponent();
 		}
@@ -31,18 +29,21 @@ namespace Cecs475.BoardGames.Othello.View {
 			var square = b.DataContext as OthelloSquare;
 			var vm = FindResource("vm") as OthelloViewModel;
 			if (vm.PossibleMoves.Contains(square.Position)) {
-				b.Background = RED_BRUSH;
+				square.IsHighlighted = true;
 			}
 		}
 
 		private void Border_MouseLeave(object sender, MouseEventArgs e) {
 			Border b = sender as Border;
-			b.Background = GREEN_BRUSH;
+			var square = b.DataContext as OthelloSquare;
+			square.IsHighlighted = false;
 		}
 
-		public OthelloViewModel Model {
-			get { return FindResource("vm") as OthelloViewModel; }
-		}
+		public OthelloViewModel OthelloViewModel => FindResource("vm") as OthelloViewModel; 
+
+		public Control ViewControl => this;
+
+		public IGameViewModel ViewModel => OthelloViewModel;
 
 		private void Border_MouseUp(object sender, MouseButtonEventArgs e) {
 			Border b = sender as Border;
@@ -50,38 +51,8 @@ namespace Cecs475.BoardGames.Othello.View {
 			var vm = FindResource("vm") as OthelloViewModel;
 			if (vm.PossibleMoves.Contains(square.Position)) {
 				vm.ApplyMove(square.Position);
-				b.Background = GREEN_BRUSH;
+				square.IsHighlighted = false;
 			}
-		}
-	}
-
-	/// <summary>
-	/// Converts from an integer player number to an Ellipse representing that player's token.
-	/// </summary>
-	public class OthelloSquarePlayerConverter : IValueConverter {
-		private static SolidColorBrush WHITE_BRUSH = new SolidColorBrush(Colors.White);
-		private static SolidColorBrush BLACK_BRUSH = new SolidColorBrush(Colors.Black);
-
-		public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-			int player = (int)value;
-			if (player == 0) {
-				return null;
-			}
-
-			Ellipse token = new Ellipse() {
-				Fill = GetFillBrush(player)
-			};
-			return token;
-		}
-
-		private static SolidColorBrush GetFillBrush(int player) {
-			if (player == 1)
-				return BLACK_BRUSH;
-			return WHITE_BRUSH;
-		}
-
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
-			throw new NotImplementedException();
 		}
 	}
 }

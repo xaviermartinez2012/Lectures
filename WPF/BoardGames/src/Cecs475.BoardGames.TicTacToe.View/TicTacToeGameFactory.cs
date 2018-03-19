@@ -1,14 +1,14 @@
-﻿using Cecs475.BoardGames.View;
+﻿using Cecs475.BoardGames.WpfView;
 
 namespace Cecs475.BoardGames.TicTacToe.View {
-	public class TicTacToeGameType : IGameType {
+	public class TicTacToeGameFactory : IWpfGameFactory {
 		public string GameName {
 			get {
 				return "Tic Tac Toe";
 			}
 		}
 
-		public System.Windows.Controls.Control GetViewControl() {
+		public IWpfGameView CreateGameView() {
 			return new TicTacToeView();
 		}
 	}

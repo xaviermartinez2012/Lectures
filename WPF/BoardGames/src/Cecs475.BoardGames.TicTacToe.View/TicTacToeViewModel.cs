@@ -1,6 +1,7 @@
 ﻿using Cecs475.BoardGames;
+using Cecs475.BoardGames.Model;
 using Cecs475.BoardGames.TicTacToe.Model;
-using Cecs475.BoardGames.View;
+using Cecs475.BoardGames.WpfView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -90,7 +91,11 @@ namespace Cecs475.BoardGames.TicTacToe.View {
 				mSquares[i].Player = mBoard.GetPieceAtPosition(pos);
 				i++;
 			}
-			OnPropertyChanged(nameof(BoardValue));
+			OnPropertyChanged(nameof(BoardAdvantage));
+		}
+
+		public void UndoMove() {
+			throw new NotImplementedException();
 		}
 
 		public ObservableCollection<TicTacToeSquare> Squares {
@@ -101,7 +106,11 @@ namespace Cecs475.BoardGames.TicTacToe.View {
 			get; private set;
 		}
 
-		public int BoardValue { get { return mBoard.Value; } }
+		public GameAdvantage BoardAdvantage => mBoard.CurrentAdvantage;
+
+		public int CurrentPlayer => mBoard.CurrentPlayer;
+
+		public bool CanUndo => mBoard.MoveHistory.Any();
 	}
 
 	/// <summary>

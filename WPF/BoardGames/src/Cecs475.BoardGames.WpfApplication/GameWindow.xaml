@@ -7,7 +7,19 @@
         xmlns:othello="clr-namespace:Cecs475.BoardGames.Othello.View;assembly=Cecs475.BoardGames.Othello.View"
         mc:Ignorable="d"
         Width="500" WindowStartupLocation="CenterOwner">
-    <DockPanel>
+    <DockPanel DataContext="{DynamicResource ViewModel}">
+        <ToolBar DockPanel.Dock="Top">
+            <ToolBarPanel>
+                <Button IsEnabled="{Binding CanUndo}" Click="UndoButton_Click"
+                        Padding="4">Undo last move</Button>
+            </ToolBarPanel>
+        </ToolBar>
+        <StatusBar DockPanel.Dock="Bottom" Height="35">
+            <Label>Advantage:</Label>
+            <Label x:Name="mAdvantageLabel"/>
+            <Label Margin="6,0,0,0">Current Player:</Label>
+            <Label x:Name="mPlayerLabel"/>
+        </StatusBar>
         <ContentControl x:Name="ViewPlaceholder" Content="{DynamicResource GameView}"/>
     </DockPanel>
 </Window>

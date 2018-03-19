@@ -43,9 +43,16 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IGameType.cs" />
     <Compile Include="IGameViewModel.cs" />
+    <Compile Include="IWpfGameFactory.cs" />
+    <Compile Include="IWpfGameView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cecs475.BoardGames.Model\Cecs475.BoardGames.Model.csproj">
+      <Project>{e30836fa-92e0-4787-9237-dc750c339fb9}</Project>
+      <Name>Cecs475.BoardGames.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

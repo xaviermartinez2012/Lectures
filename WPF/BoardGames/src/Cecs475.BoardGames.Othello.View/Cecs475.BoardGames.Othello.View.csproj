@@ -60,7 +60,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OthelloGameType.cs" />
+    <Compile Include="OthelloGameFactory.cs" />
+    <Compile Include="OthelloSquareBackgroundConverter.cs" />
+    <Compile Include="OthelloSquarePlayerConverter.cs" />
     <Compile Include="OthelloView.xaml.cs">
       <DependentUpon>OthelloView.xaml</DependentUpon>
     </Compile>
