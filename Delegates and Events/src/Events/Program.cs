@@ -35,7 +35,7 @@ namespace Events {
 
 
 			// Declare a Stack variable.
-			IntStack s = new IntStack();
+			Stack<int> s = new Stack<int>();
 			// I want to be informed whenever an item is added to this stack, so I "subscribe" to the
 			// ItemAdded event.
 			s.ItemAdded += Stack_ItemAdded;
@@ -51,11 +51,14 @@ namespace Events {
 			// Why bother with this approach?
 		}
 
-		public static void Stack_ItemAdded(IntStack stack, int item) {
-			Console.WriteLine($"{item} was just added to the stack, which now has {stack.Count} elements");
+		public static void Stack_ItemAdded(object sender, StackEventArgs<int> args) {
+			var stack = sender as Stack<int>;
+			Console.WriteLine($"{args.Value} was just added to the stack, which now has {stack.Count} elements");
 		}
-		public static void Stack_ItemRemoved(IntStack stack, int item) {
-			Console.WriteLine($"{item} was just removed from the stack, which now has {stack.Count} elements");
+
+		public static void Stack_ItemRemoved(object sender, StackEventArgs<int> args) {
+			var stack = sender as Stack<int>;
+			Console.WriteLine($"{args.Value} was just removed from the stack, which now has {stack.Count} elements");
 		}
 	}
 }
