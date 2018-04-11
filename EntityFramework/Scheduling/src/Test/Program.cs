@@ -14,7 +14,7 @@ namespace Test {
 			int choice = -1;
 			do {
 				Console.WriteLine("Menu:\n0. Quit\n1. Populate database\n2. Show courses\n3. Show course sections\n"
-					+ "4. Print transcript");
+					+ "4. Print transcript\n6. Reflection and type demos");
 				choice = Convert.ToInt32(Console.ReadLine());
 
 				switch (choice) {
@@ -87,7 +87,7 @@ namespace Test {
 
 						var cecs228_99 = new CourseSection() {
 							CatalogCourse = cecs228,
-							SectionNumber = 1,
+							SectionNumber = 99,
 							Instructor = anthony,
 							MeetingDays = DaysOfWeek.Friday,
 							StartTime = new DateTime(2017, 1, 1, 10, 0, 0), // 9 am
@@ -141,11 +141,11 @@ namespace Test {
 						};
 						s1.Transcript.Add(new CourseGrade() {
 							CourseSection = cecs174_99,
-							Grade = GradeTypes.A
+							GradeEarned = GradeTypes.A
 						});
 						s1.Transcript.Add(new CourseGrade() {
 							CourseSection = cecs228_99,
-							Grade = GradeTypes.D
+							GradeEarned = GradeTypes.D
 						});
 						con.Students.Add(s1);
 
@@ -236,12 +236,18 @@ namespace Test {
 						var register = eStudent.CanRegisterForCourseSection(sec2);
 						Console.WriteLine(register);
 						break;
+
+					case 6:
+
+						break;
 				}
 				Console.WriteLine();
 				Console.WriteLine();
 
 			} while (choice != 0);
 		}
+
+
 
 	}
 }

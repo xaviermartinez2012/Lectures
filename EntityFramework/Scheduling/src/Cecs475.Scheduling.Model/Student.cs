@@ -23,19 +23,19 @@ namespace Cecs475.Scheduling.Model {
 			if (section.EnrolledStudents.Where(s => s.Id == this.Id).Any())
 				return RegistrationResults.AlreadyEnrolled;
 
-			if (Transcript.Where(t => (int)t.Grade <= (int)GradeTypes.C && t.CourseSection.CatalogCourse.Id == section.CatalogCourse.Id).Any())
+			if (Transcript.Where(t => (int)t.GradeEarned <= (int)GradeTypes.C && t.CourseSection.CatalogCourse.Id == section.CatalogCourse.Id).Any())
 				return RegistrationResults.AlreadyCompleted;
 
 			foreach (var pre in section.CatalogCourse.Prerequisites) {
-				if (!Transcript.Where(t => (int)t.Grade <= (int)GradeTypes.C &&
+				if (!Transcript.Where(t => (int)t.GradeEarned <= (int)GradeTypes.C &&
 					t.CourseSection.CatalogCourse.Id == pre.Id).Any())
 					return RegistrationResults.PrerequisiteNotMet;
 			}
 
 			foreach (var en in EnrolledCourses) {
 				if ((en.MeetingDays & section.MeetingDays) != DaysOfWeek.None) {
-					if ((en.StartTime < section.EndTime && section.StartTime < en.EndTime) ||
-						(section.StartTime < en.EndTime && en.StartTime < section.EndTime)){
+					if ((en.StartTime <= section.EndTime && section.StartTime <= en.EndTime) ||
+						(section.StartTime <= en.EndTime && en.StartTime <= section.EndTime)){
 						return RegistrationResults.TimeConflict;
 					}
 				}
