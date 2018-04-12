@@ -20,5 +20,10 @@ namespace Layouts {
 		public GridLayout() {
 			InitializeComponent();
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e) {
+			MessageBox.Show("You clicked the button!");
+			myButton.Content = "Yay";
+		}
 	}
 }

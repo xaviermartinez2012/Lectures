@@ -55,89 +55,54 @@ namespace LinqIntegrated {
 
 			Console.WriteLine("Finding onlyPixarMovies \n");
 			// We can use LINQ to "query" this data to create sequences only containing certain elements from the original...
-			var onlyPixarMovies =
-				from m in movies // introduce a variable to iterate over the given existing collection
-				where m.ProductionCompany == "Pixar Animation Studios" // introduce an optional filter on the variable
-				select m // use a mapping function to select the final data
-			;
+			var onlyPixarMovies = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios");
 			// onlyPixarMovies is IEnumerable<Movie> containing only the elements of movies that passed the where clause.
+			// More LINQ methods can be called on the result.
 			var f = onlyPixarMovies.Skip(2).First();
+			
 
-
-			return;
-
-			// The above compiles to this:
-			var onlyPixarMovies2 = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios").Select(m => m); // the last Select is unnecessary
-
-
-			// Describe these sequences, and translate to their compiled form.
+			// Describe these sequences.
 			Console.WriteLine("Finding nonPixarTitles \n");
-			var nonPixarTitles =
-				from m in movies
-				where m.ProductionCompany != "Pixar Animation Studios"
-				select m.Title;
-
-			var nonPixarTitles2 = movies.Where(m => m.ProductionCompany != "Pixar Animation Studios").Select(m => m.Title);
-
+			var nonPixarTitles = movies.Where(m => m.ProductionCompany != "Pixar Animation Studios")
+				.Select(m => m.Title);
 
 
 			Console.WriteLine("Finding shortMovies  \n");
-			var shortMovies =
-				from m in movies
-				where m.RunningTime < 100
-				select m;
+			var shortMovies = movies.Where(m => m.RunningTime < 100);
 
 
 
 			Console.WriteLine("Finding profitMargins  \n");
-			var profitMargins =
-				from m in movies
-				select (double)m.Earnings / m.Budget;
+			var profitMargins = movies.Select(m => (double)m.Earnings / m.Budget);
 
 
-			// orderby: give a property to sort the resulting data by
+
+			// OrderBy: give a property to sort the resulting data by
 			Console.WriteLine("Finding pixarEarnings  \n");
-			var pixarEarnings =
-				from m in movies
-				where m.ProductionCompany == "Pixar Animation Studios"
-				orderby m.Earnings descending // or leave this out for ascending
-				select m;
-
-			var pixarEarnings2 = movies.Where(m => m.ProductionCompany == "Pixar").OrderByDescending(m => m.Earnings).Select(m => m);
+			var pixarEarnings = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios")
+				.OrderByDescending(m => m.Earnings);
 
 
-
-			// We can also use other LINQ functions that don't have immediate support, by calling the method on the result
-			// of the query.
 			Console.WriteLine("Finding totalPixarEarnings  \n");
-			var totalPixarEarnings = (
-				from m in movies
-				where m.ProductionCompany == "Pixar Animation Studios"
-				select m.Earnings
-			).Sum();
-			Console.WriteLine();
+			var totalPixarEarnings = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios")
+				.Select(m => m.Earnings)
+				.Sum();
+
 
 			Console.WriteLine("Finding pixarAverageLengthExceptLongest  \n");
-			var pixarAverageLengthExceptLongest = (
-				from m in movies
-				where m.ProductionCompany == "Pixar Animation Studios"
-				orderby m.RunningTime descending
-				select m.RunningTime
-			).Skip(1).Average();
+			var pixarAverageLengthExceptLongest = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios")
+				.OrderByDescending(m => m.RunningTime)
+				.Select(m => m.RunningTime)
+				.Skip(1)
+				.Average();
 
 
 
 			Console.WriteLine("Finding pixarBestProfitMargin  \n");
-			var pixarBestProfitMargin = (
-				from margin in (
-					from m in movies
-					where m.ProductionCompany == "Pixar Animation Studios"
-					select (double)m.Earnings / m.Budget
-				)
-				orderby margin descending
-				select margin
-			).First();
-
+			var pixarBestProfitMargin = movies.Where(m => m.ProductionCompany == "Pixar Animation Studios")
+				.Select(m => (double)m.Earnings / m.Budget)
+				.OrderByDescending(pr => pr)
+				.First();
 
 		}
 	}

@@ -33,6 +33,28 @@ namespace Action_Func {
 			p2(100);
 
 			// Why is that helpful?
+
+
+
+
+			// So now we can do:
+			Func<int, int, double> f = NthPower;
+			Console.WriteLine($"{f(5, 3)}");
 		}
+
+
+
+		public static double NthPower(int first, int second) {
+			return Math.Pow(first, second);
+		}
+
+		public static double NthRoot(int first, int second) {
+			return Math.Pow(first, 1.0 / second);
+		}
+
+		public static double Product(int first, int second) {
+			return first * second;
+		}
+
 	}
 }

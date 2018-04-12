@@ -6,68 +6,53 @@ namespace Cecs475.Othello.Model {
 	/// Represents a single move that can be or has been applied to an OthelloBoard object.
 	/// </summary>
 	public class OthelloMove : IEquatable<OthelloMove> {
-		/// <summary>
-		/// A record of pieces that were flipped in a particular direction when an OthelloMove was applied.
-		/// </summary>
-		public struct FlipSet {
-			/// <summary>
-			/// The row direction that pieces were flipped in.
-			/// </summary>
-			public int RowDelta { get; set; }
-			/// <summary>
-			/// The column direction that pieces were flipped in.
-			/// </summary>
-			public int ColDelta { get; set; }
-			/// <summary>
-			/// The number of pieces that were flipped in the recorded direction.
-			/// </summary>
-			public int Count { get; set; }
-		}
+		public int Player { get; set; }
 
-		// Our list of flips that were recorded when this move was applied.
-		private List<FlipSet> mFlipSets;
+		/// <summary>
+		/// The position of the move.
+		/// </summary>
+		public BoardPosition Position { get; }
 
 		/// <summary>
 		/// Initializes a new OthelloMove instance representing the given board position.
 		/// </summary>
 		public OthelloMove(BoardPosition pos) {
 			Position = pos;
-			mFlipSets = new List<FlipSet>();
 		}
 
-		/// <summary>
-		/// True if the move represents a "pass".
-		/// </summary>
-		public bool IsPass {
-			get { return Position.Row == -1 && Position.Col == -1; }
+		public OthelloMove(int player, BoardPosition pos) {
+			Player = player;
+			Position = pos;
 		}
 
-		/// <summary>
-		/// The position of the move.
-		/// </summary>
-		public BoardPosition Position { get; private set; }
-
-		/// <summary>
-		/// A sequence of FlipSet objects representing the different directions of flips made when this move was applied.
-		/// </summary>
-		public IEnumerable<FlipSet> FlipSets { get { return mFlipSets; } }
-
-		/// <summary>
-		/// Records a FlipSet for the move.
-		/// </summary>
-		public void AddFlipSet(FlipSet f) {
-			mFlipSets.Add(f);
+		public override bool Equals(object obj) {
+			return Equals(obj as OthelloMove);
 		}
 
 		/// <summary>
 		/// Returns true if the two objects have the same position.
 		/// </summary>
 		public bool Equals(OthelloMove other) {
-			return other.Position.Row == this.Position.Row && other.Position.Col == this.Position.Col;
+			return other != null && Position.Equals(other.Position);
 		}
+		
+		/// <summary>
+		/// True if the move represents a "pass".
+		/// </summary>
+		public bool IsPass =>
+			Position.Row == -1 && Position.Col == -1;
 
+
+		// For debugging.
 		public override string ToString() {
 			return Position.ToString();
+		}
+
+		public override int GetHashCode() {
+			var hashCode = 1257125194;
+			hashCode = hashCode * -1521134295 + Player.GetHashCode();
+			hashCode = hashCode * -1521134295 + EqualityComparer<BoardPosition>.Default.GetHashCode(Position);
+			return hashCode;
 		}
 	}
 }

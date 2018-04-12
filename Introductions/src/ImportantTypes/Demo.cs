@@ -47,7 +47,7 @@
 	// A key/value pair for use in maps. (Map.Entry in Java.)
 	struct KeyValuePair<TKey, TValue> {
 		public TKey Key { get; }
-		public TKey Value { get; }
+		public TValue Value { get; }
 	}
 
 	// IDictionary is a map (dictionary) structure from keys to values. Map<TKey, TValue> in Java.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cecs475.BoardGames.WpfView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,15 @@ namespace Cecs475.BoardGames.TicTacToe.View {
 	/// <summary>
 	/// Interaction logic for TicTacToeView.xaml
 	/// </summary>
-	public partial class TicTacToeView : UserControl {
+	public partial class TicTacToeView : UserControl, IWpfGameView {
 		public static SolidColorBrush RED_BRUSH = new SolidColorBrush(Colors.Red);
 		public static SolidColorBrush GREEN_BRUSH = new SolidColorBrush(Colors.Green);
+
+		public Control ViewControl => this;
+
+		public IGameViewModel ViewModel => TicTacToeViewModel;
+
+		private TicTacToeViewModel TicTacToeViewModel => FindResource("vm") as TicTacToeViewModel;
 
 		public TicTacToeView() {
 			InitializeComponent();

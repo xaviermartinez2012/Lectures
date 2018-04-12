@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Layouts"
         mc:Ignorable="d"
         Title="MainWindow" Height="210.594" Width="348.517" FontSize="18">
-   <StackPanel >
+   <StackPanel>
       <StackPanel.Resources>
          <Style TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="0,2,0,0"/>

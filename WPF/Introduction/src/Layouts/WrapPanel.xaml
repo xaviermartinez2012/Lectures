@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Layouts"
         mc:Ignorable="d"
-        Title="Wrap Panel demo" Height="300" Width="587.288">
+        Title="Wrap Panel demo" Height="300" Width="678.641">
    <WrapPanel Orientation="Horizontal">
       <Label Background="Gray">This label auto-sizes itself.</Label>
       <Label Background="White">This label will start next to the other label, if it fits.</Label>

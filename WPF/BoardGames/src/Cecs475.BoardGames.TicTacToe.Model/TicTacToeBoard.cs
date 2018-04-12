@@ -1,4 +1,5 @@
 ﻿using Cecs475.BoardGames;
+using Cecs475.BoardGames.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,10 @@ namespace Cecs475.BoardGames.TicTacToe.Model {
 		private int mPlayer;
 		private sbyte[,] mBoard = new sbyte[3, 3];
 
+		private List<TicTacToeMove> mMoveHistory = new List<TicTacToeMove>();
+
 		public TicTacToeBoard() {
 			mPlayer = 1;
-			MoveHistory = new List<IGameMove>();
 		}
 
 		public int CurrentPlayer {
@@ -25,21 +27,23 @@ namespace Cecs475.BoardGames.TicTacToe.Model {
 			}
 		}
 
-		public IList<IGameMove> MoveHistory { get; private set; }
-
 		/// <summary>
 		/// Value is either 0, or 1 if Player 1 has won, or -1 if Player 2 has won.
 		/// </summary>
-		public int Value {
-			get; private set;
-		}
+		private int mValue;
+
+		public IReadOnlyList<IGameMove> MoveHistory => mMoveHistory;
+
+		public bool IsFinished { get; private set; }
+
+		public GameAdvantage CurrentAdvantage => new GameAdvantage(mValue, 0);
 
 		public void ApplyMove(IGameMove move) {
 			TicTacToeMove m = move as TicTacToeMove;
 			SetPosition(m.Position, CurrentPlayer);
-			MoveHistory.Add(m);
+			mMoveHistory.Add(m);
 			mPlayer = -mPlayer;
-			mGameOver = GameIsOver();
+			IsFinished = GameIsOver();
 		}
 
 		/// <summary>
@@ -48,22 +52,22 @@ namespace Cecs475.BoardGames.TicTacToe.Model {
 		/// </summary>
 		/// <returns></returns>
 		private bool GameIsOver() {
-			Value = 0;
+			mValue = 0;
 			for (int r = 0; r < 3; r++) {
 				if (mBoard[r, 0] == mBoard[r, 1] && mBoard[r, 0] == mBoard[r, 2] && mBoard[r, 0] != 0) {
-					Value = mBoard[r, 0];
+					mValue = mBoard[r, 0];
 				}
 				if (mBoard[0, r] == mBoard[1, r] && mBoard[0, r] == mBoard[2, r] && mBoard[0, r] != 0) {
-					Value = mBoard[r, 0];
+					mValue = mBoard[r, 0];
 				}
 			}
 			if (mBoard[0, 0] == mBoard[1, 1] && mBoard[0, 0] == mBoard[2, 2] && mBoard[0, 0] != 0) {
-				Value = mBoard[0, 0];
+				mValue = mBoard[0, 0];
 			}
 			if (mBoard[0, 2] == mBoard[1, 1] && mBoard[0, 2] == mBoard[2, 0] && mBoard[0, 2] != 0) {
-				Value = mBoard[0, 2];
+				mValue = mBoard[0, 2];
 			}
-			return Value != 0;
+			return mValue != 0;
 		}
 
 		private void SetPosition(BoardPosition position, int player) {
@@ -92,7 +96,7 @@ namespace Cecs475.BoardGames.TicTacToe.Model {
 		public void UndoLastMove() {
 			TicTacToeMove m = MoveHistory.Last() as TicTacToeMove;
 			SetPosition(m.Position, 0);
-			MoveHistory.RemoveAt(MoveHistory.Count - 1);
+			mMoveHistory.RemoveAt(MoveHistory.Count - 1);
 		}
 	}
 }

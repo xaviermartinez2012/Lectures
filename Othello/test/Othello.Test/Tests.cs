@@ -11,7 +11,7 @@ namespace Othello.Tests {
 		public void NewValue() {
 			// New board Value is 0.
 			OthelloBoard board = new OthelloBoard();
-			board.Value.Should().Be(0, "New board value is 0");
+			board.CurrentAdvantage.Advantage.Should().Be(0, "New board value is 0");
 		}
 
 		[Fact]
@@ -27,9 +27,9 @@ namespace Othello.Tests {
 			OthelloBoard board = new OthelloBoard();
 			board.ApplyMove(new OthelloMove(new BoardPosition(3, 2)));
 			board.ApplyMove(new OthelloMove(new BoardPosition(4, 2)));
-			board.Value.Should().Be(0);
+			board.CurrentAdvantage.Advantage.Should().Be(0);
 			board.ApplyMove(new OthelloMove(new BoardPosition(5, 2)));
-			board.Value.Should().Be(5);
+			board.CurrentAdvantage.Advantage.Should().Be(5);
 		}
 	}
 }
