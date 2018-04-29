@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Cecs475.Scheduling.RegistrationApp"
         mc:Ignorable="d"
         Title="Register for classes" Height="179.449" Width="525">
-    <Grid>
+    <Window.Resources>
+        <local:RegistrationViewModel x:Key="ViewModel"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource ViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="107*"/>
             <ColumnDefinition Width="315*"/>
@@ -20,13 +23,16 @@
             <RowDefinition Height="37*" />
         </Grid.RowDefinitions>
         <Label>API URL:</Label>
-        <TextBox x:Name="mApiText" Grid.Column="1" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="mApiText" Grid.Column="1" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="300"
+                 Text="{Binding ApiUrl}"/>
         <Label Grid.Row="1" Grid.RowSpan="2">Student's name:</Label>
-        <TextBox x:Name="mStudentText" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="mStudentText" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="300"
+                 Text="{Binding FullName}"/>
         <Button x:Name="mValidateBtn" Grid.Row="1" Grid.Column="2" Margin="0,0,0,6.145" Click="mValidateBtn_Click">Validate</Button>
         <Label Grid.Row="3">Course section:</Label>
         <TextBox x:Name="mCourseText" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="300"/>
         <Button x:Name="mRegisterBtn" Grid.Row="4" Click="mRegisterBtn_Click">Register</Button>
         <Button x:Name="mAsyncBtn" Grid.Row="4" Grid.Column="2" Click="mAsyncBtn_Click">Register Async</Button>
+
     </Grid>
 </Window>

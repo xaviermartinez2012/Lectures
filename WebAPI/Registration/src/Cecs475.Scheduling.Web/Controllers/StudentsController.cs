@@ -46,7 +46,7 @@ namespace Cecs475.Scheduling.Web.Controllers {
 			return mContext.Students.Where(s => s.Id == id).Select(StudentDto.From)
 				.FirstOrDefault();
 		}
-
+		
 		[HttpGet]
 		[Route("{name}")]
 		public StudentDto Get(string name) {

@@ -8,9 +8,19 @@ using System.Web.Http;
 
 namespace Cecs475.Scheduling.Web.Controllers {
 	public class CourseSectionDto {
-		public string CourseName { get; set; }
+		public int Id { get; set; }
+		public int SemesterTermId { get; set; }
+		public CatalogCourseDto CatalogCourse { get; set; }
 		public int SectionNumber { get; set; }
-		public string SemesterTermName { get; set; }
+
+		public static CourseSectionDto From(Model.CourseSection section) {
+			return new CourseSectionDto {
+				Id = section.Id,
+				SemesterTermId = section.Semester.Id,
+				SectionNumber = section.SectionNumber,
+				CatalogCourse = CatalogCourseDto.From(section.CatalogCourse)
+			};
+		}
 	}
 
 	public class RegistrationDto {
@@ -35,22 +45,23 @@ namespace Cecs475.Scheduling.Web.Controllers {
 			}
 
 			Model.SemesterTerm term = mContext.SemesterTerms.Where(
-				t => t.Name == studentCourse.CourseSection.SemesterTermName)
-				.FirstOrDefault();
+				t => t.Id == studentCourse.CourseSection.SemesterTermId)
+				.SingleOrDefault();
 
 			if (term == null) {
 				throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound,
-					$"Semester named \"{studentCourse.CourseSection.SemesterTermName}\" not found"));
+					$"Semester id \"{studentCourse.CourseSection.SemesterTermId}\" not found"));
 			}
 
-			Model.CourseSection section = term.CourseSections.Where(
-				c => c.CatalogCourse.ToString() == studentCourse.CourseSection.CourseName
-					  && c.SectionNumber == studentCourse.CourseSection.SectionNumber)
-				.FirstOrDefault();
+			Model.CourseSection section = term.CourseSections.SingleOrDefault(
+				c => c.CatalogCourse.DepartmentName == studentCourse.CourseSection.CatalogCourse.DepartmentName
+					  && c.CatalogCourse.CourseNumber == studentCourse.CourseSection.CatalogCourse.CourseNumber
+					  && c.SectionNumber == studentCourse.CourseSection.SectionNumber);
 			if (section == null) {
 				throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound,
-					$"Course named \"{studentCourse.CourseSection.CourseName}-" +
-					$"{studentCourse.CourseSection.SectionNumber}\" not found"));
+					$"Course named \"{studentCourse.CourseSection.CatalogCourse.DepartmentName}" +
+					$"{studentCourse.CourseSection.CatalogCourse.CourseNumber}\"-" +
+					$"{studentCourse.CourseSection.SectionNumber} not found"));
 			}
 
 			var regResult = student.CanRegisterForCourseSection(section);

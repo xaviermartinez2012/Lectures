@@ -24,10 +24,13 @@ namespace Cecs475.Scheduling.RegistrationApp {
 			InitializeComponent();
 		}
 
+		public RegistrationViewModel ViewModel => 
+			FindResource("ViewModel") as RegistrationViewModel;
+
 		private void mValidateBtn_Click(object sender, RoutedEventArgs e) {
-			var client = new RestClient(mApiText.Text);
+			var client = new RestClient(ViewModel.ApiUrl);
 			var request = new RestRequest("api/students/{name}", Method.GET);
-			request.AddUrlSegment("name", mStudentText.Text);
+			request.AddUrlSegment("name", ViewModel.FullName);
 
 			var response = client.Execute(request);
 			if (response.StatusCode == System.Net.HttpStatusCode.NotFound) {
@@ -41,24 +44,28 @@ namespace Cecs475.Scheduling.RegistrationApp {
 		private void mRegisterBtn_Click(object sender, RoutedEventArgs e) {
 			string[] courseSplit = mCourseText.Text.Split('-');
 			int sectionNum = Convert.ToInt32(courseSplit[1]);
+			string[] nameSplit = courseSplit[0].Split(' ');
 
-
-			var client = new RestClient(mApiText.Text);
+			var client = new RestClient(ViewModel.ApiUrl);
 			var request = new RestRequest("api/students/{name}", Method.GET);
-			request.AddUrlSegment("name", mStudentText.Text);
+			request.AddUrlSegment("name", ViewModel.FullName);
 			var response = client.Execute(request);
 			if (response.StatusCode == System.Net.HttpStatusCode.NotFound) {
 				MessageBox.Show("Student not found");
 			}
 			else {
 				request = new RestRequest("api/register", Method.POST);
+
 				JObject obj = JObject.Parse(response.Content);
 				request.AddJsonBody(new {
 					StudentId = (int)obj["Id"],
 					CourseSection = new {
-						CourseName = courseSplit[0],
+						SemesterTermId = 2, // hard-code Fall 2017
+						CatalogCourse = new {
+							DepartmentName = nameSplit[0],
+							CourseNumber = nameSplit[1]
+						},
 						SectionNumber = sectionNum,
-						SemesterTermName = "Fall 2017"
 					}
 				});
 
@@ -76,11 +83,12 @@ namespace Cecs475.Scheduling.RegistrationApp {
 		private async void mAsyncBtn_Click(object sender, RoutedEventArgs e) {
 			string[] courseSplit = mCourseText.Text.Split('-');
 			int sectionNum = Convert.ToInt32(courseSplit[1]);
+			string[] nameSplit = courseSplit[0].Split(' ');
 
 
-			var client = new RestClient(mApiText.Text);
+			var client = new RestClient(ViewModel.ApiUrl);
 			var request = new RestRequest("api/students/{name}", Method.GET);
-			request.AddUrlSegment("name", mStudentText.Text);
+			request.AddUrlSegment("name", ViewModel.FullName);
 
 			// When an function could cause a blocking operation, it is marked as "async".
 			// If we call that function, it no longer directly returns its return type;
@@ -114,9 +122,12 @@ namespace Cecs475.Scheduling.RegistrationApp {
 				request.AddJsonBody(new {
 					StudentId = (int)obj["Id"],
 					CourseSection = new {
-						CourseName = courseSplit[0],
+						SemesterTermId = 2, // hard-code Fall 2017
+						CatalogCourse = new {
+							DepartmentName = nameSplit[0],
+							CourseNumber = nameSplit[1]
+						},
 						SectionNumber = sectionNum,
-						SemesterTermName = "Fall 2017"
 					}
 				});
 
