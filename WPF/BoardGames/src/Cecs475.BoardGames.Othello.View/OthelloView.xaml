@@ -14,6 +14,7 @@
         <local:OthelloViewModel x:Key="vm"/>
         <!-- This converter will convert from an int to a colored circle. -->
         <local:OthelloSquarePlayerConverter x:Key="PlayerColor"/>
+        <local:OthelloSquareBackgroundConverter x:Key="BackgroundColor"/>
     </UserControl.Resources>
     <!-- 
     An ItemsControl is basically a "repeater": for each element in a collection that is its ItemSource,
@@ -41,9 +42,15 @@
                 This control is created for each element in the ItemSource. 
                 A Border control draws a border around whatever control it contains.
                 -->
-                <Border BorderThickness="1" BorderBrush="Black" Background="Green"
+                <Border BorderThickness="1" BorderBrush="Black"
                         MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave"
                         MouseUp="Border_MouseUp">
+                    <Border.Background>
+                        <MultiBinding Converter="{StaticResource BackgroundColor}">
+                            <Binding Path="Position"/>
+                            <Binding Path="IsHighlighted"/>
+                        </MultiBinding>
+                    </Border.Background>
                     <!-- 
                     A ContentControl is just a placeholder that gets replaced by its Content. 
                     We use it here because it can Bind to the Player property of an OthelloSquare object,

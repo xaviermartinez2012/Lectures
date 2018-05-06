@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardDirection.cs" />
     <Compile Include="BoardPosition.cs" />
+    <Compile Include="GameAdvantage.cs" />
     <Compile Include="IGameBoard.cs" />
     <Compile Include="IGameMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

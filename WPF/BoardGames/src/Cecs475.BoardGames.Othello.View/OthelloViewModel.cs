@@ -2,9 +2,11 @@
 using System.Linq;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
-using Cecs475.BoardGames;
-using Cecs475.BoardGames.View;
+using Cecs475.BoardGames.WpfView;
 using System;
+
+using Cecs475.BoardGames.Othello.Model;
+using Cecs475.BoardGames.Model;
 
 namespace Cecs475.BoardGames.Othello.View {
 	/// <summary>
@@ -31,7 +33,22 @@ namespace Cecs475.BoardGames.Othello.View {
 		public BoardPosition Position {
 			get; set;
 		}
-		
+
+
+		private bool mIsHighlighted;
+		/// <summary>
+		/// Whether the square should be highlighted because of a user action.
+		/// </summary>
+		public bool IsHighlighted {
+			get { return mIsHighlighted; }
+			set {
+				if (value != mIsHighlighted) {
+					mIsHighlighted = value;
+					OnPropertyChanged(nameof(IsHighlighted));
+				}
+			}
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void OnPropertyChanged(string name) {
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -48,18 +65,14 @@ namespace Cecs475.BoardGames.Othello.View {
 
 		public OthelloViewModel() {
 			mBoard = new OthelloBoard();
-			
+
 			// Initialize the squares objects based on the board's initial state.
 			mSquares = new ObservableCollection<OthelloSquare>(
-				from pos in (
-					from r in Enumerable.Range(0, 8)
-					from c in Enumerable.Range(0, 8)
-					select new BoardPosition(r, c)
-				)
-				select new OthelloSquare() {
+				BoardPosition.GetRectangularPositions(8, 8)
+				.Select(pos => new OthelloSquare() {
 					Position = pos,
-					Player = mBoard.GetPieceAtPosition(pos)
-				}
+					Player = mBoard.GetPlayerAtPosition(pos)
+				})
 			);
 
 			PossibleMoves = new HashSet<BoardPosition>(
@@ -81,6 +94,10 @@ namespace Cecs475.BoardGames.Othello.View {
 				}
 			}
 
+			RebindState();
+		}
+
+		private void RebindState() {
 			// Rebind the possible moves, now that the board has changed.
 			PossibleMoves = new HashSet<BoardPosition>(
 				from OthelloMove m in mBoard.GetPossibleMoves()
@@ -88,17 +105,15 @@ namespace Cecs475.BoardGames.Othello.View {
 			);
 
 			// Update the collection of squares by examining the new board state.
-			var newSquares =
-				from r in Enumerable.Range(0, 8)
-				from c in Enumerable.Range(0, 8)
-				select new BoardPosition(r, c);
+			var newSquares = BoardPosition.GetRectangularPositions(8, 8);
 			int i = 0;
 			foreach (var pos in newSquares) {
-				mSquares[i].Player = mBoard.GetPieceAtPosition(pos);
+				mSquares[i].Player = mBoard.GetPlayerAtPosition(pos);
 				i++;
 			}
-			OnPropertyChanged(nameof(BoardValue));
+			OnPropertyChanged(nameof(BoardAdvantage));
 			OnPropertyChanged(nameof(CurrentPlayer));
+			OnPropertyChanged(nameof(CanUndo));
 		}
 
 		/// <summary>
@@ -126,12 +141,21 @@ namespace Cecs475.BoardGames.Othello.View {
 		/// <summary>
 		/// The value of the othello board.
 		/// </summary>
-		public int BoardValue { get { return mBoard.Value; } }
+
+		public GameAdvantage BoardAdvantage => mBoard.CurrentAdvantage;
+
+		public bool CanUndo => mBoard.MoveHistory.Any();
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void OnPropertyChanged(string name) {
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
 
+		public void UndoMove() {
+			if (CanUndo) {
+				mBoard.UndoLastMove();
+				RebindState();
+			}
+		}
 	}
 }

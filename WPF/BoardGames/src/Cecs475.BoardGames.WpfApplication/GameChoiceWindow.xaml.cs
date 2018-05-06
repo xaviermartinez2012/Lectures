@@ -1,4 +1,4 @@
-﻿using Cecs475.BoardGames.View;
+﻿using Cecs475.BoardGames.WpfView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +26,9 @@ namespace Cecs475.BoardGames.WpfApplication {
 		private void Button_Click(object sender, RoutedEventArgs e) {
 			Button b = sender as Button;
 			// Retrieve the game type bound to the button
-			IGameType gameType = b.DataContext as IGameType;
-			// Get a View control for the game type
-			Control viewControl = gameType.GetViewControl();
+			IWpfGameFactory gameType = b.DataContext as IWpfGameFactory;
 			// Construct a GameWindow to play the game.
-			var gameWindow = new GameWindow(viewControl) {
+			var gameWindow = new GameWindow(gameType) {
 				Title = gameType.GameName
 			};
 			// When the GameWindow closes, we want to show this window again.

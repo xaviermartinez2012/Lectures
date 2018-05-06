@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cecs475.BoardGames.WpfView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,10 +19,17 @@ namespace Cecs475.BoardGames.WpfApplication {
 		/// <summary>
 		/// Creates a GameWindow containing the given game View control.
 		/// </summary>
-		public GameWindow(Control gameControl) {
-			InitializeComponent();
+		public GameWindow(IWpfGameFactory factory) {
 			// Set the DynamicResource named GameView to the given control.
-			this.Resources.Add("GameView", gameControl);
+			var gameView = factory.CreateGameView();
+			this.Resources.Add("GameView", gameView.ViewControl);
+			this.Resources.Add("ViewModel", gameView.ViewModel);
+			InitializeComponent();
+
+		}
+
+		private void UndoButton_Click(object sender, RoutedEventArgs e) {
+			(FindResource("ViewModel") as IGameViewModel).UndoMove();
 		}
 	}
 }
